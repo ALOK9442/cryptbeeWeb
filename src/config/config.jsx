@@ -1,5 +1,5 @@
 const config = {
-    BASEURL: String(import.meta.env.VITE_API_URL),
+    BASEURL: String(import.meta.env.VITE_BASE_URL),
     signInLink: "auth/login/",
     signUpLink: "auth/sendemailLINK/",
     verificationCheckerLink: "auth/verifyemailLINK/",

@@ -8,6 +8,7 @@ export const userLogin = async (email, password) => {
     try {
         console.log("trying to signIn");
         const response = await axios.post(BASEURL + config.signInLink, { email, password });
+        console.log(response.data.message)
         return response;
     } catch (error) {
         console.log(error);
