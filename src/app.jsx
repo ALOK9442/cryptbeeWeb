@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import './app.css'
+import Login from './components/login'
 
 function App() {
 
@@ -8,6 +9,7 @@ function App() {
     <>
       <div className='text-3xl font-bold underline'>
         CryptBee
+        <Login/>
       </div>
     </>
   )

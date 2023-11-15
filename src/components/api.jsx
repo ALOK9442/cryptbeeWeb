@@ -31,7 +31,7 @@ api.interceptors.response.use(
             try {
                 const {refresh: refreshToken} = store.getState().auth;
                 const response = await axios.post(baseURL+config.renewTokenLink,{refreshToken})
-                localStorage.setItem("token",response.data);
+                localStorage.setItem("accessToken",response.data.access);
                 originalRequest.headers.Authorization = `Bearer${response.data.access}`
                 store.dispatch(login({access}))
                 return(api(originalRequest))
