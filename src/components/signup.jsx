@@ -1,64 +1,60 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
-// import backgroundimage from "../assets/background.png"
-import { Link } from 'react-router-dom'
-import Input from './common/input'
-import Button from './common/button'
 import { useForm } from 'react-hook-form'
-import { login as authLogin } from '../store/slices/authslice'
-// import axios from 'axios'
-import { userLogin } from '../services/auth/authservice'
+import { Link, useNavigate } from 'react-router-dom'
+import { signUpUser } from '../services/auth/authservice'
+import { setEmail } from '../store/slices/authslice'
+// import { logout as SignUp } from '../store/slices/authslice'
 
-function Login() {
+function SignUp() {
     const dispatch = useDispatch()
+    const navigate = useNavigate()
     // const navigate = useNavigate()
     const { register, handleSubmit, setValue } = useForm()
     const [error, setError] = useState()
+    
 
-    const handleLogin = async (data) => {
+    // useEffect(() => {
+    //     setValue("email", "");
+    //     setValue("password", "")
+    // }, [])
+    
+    const handleSignup = async (data) => {
         setError("")
         try {
-            console.log("trying on login page");
-            const response = await userLogin(data.email, data.password);
+            console.log("trying to signup on signup page");
+            const response = await signUpUser(data.email, data.password);
             if (response) {
-                localStorage.setItem("accessToken", response.data.access)
-                localStorage.setItem("refreshToken", response.data.refresh)
-                dispatch(authLogin(response.data))
-                console.log(response.data.refresh);
-                console.log(response.data.access);
-                // return response.data.message;
+                console.log(response.data.messsage[0]);
+                console.log(data.email);
+                dispatch(setEmail(data.email))
                 setValue("email", "");
                 setValue("password", "")
+                navigate(`/verifymail?email=${data.email}`);
             }
         } catch (error) {
             console.log(error)
-            throw (error)
+            // throw (error)
         }
     }
     return (
         <div
             className='flex items-center justify-center w-full'
-            // style={{
-            //     backgroundImage:`url(${backgroundimage})`
-            // }}
         >
             <div className="mx-auto w-full max-w-lg rounded-xl p-10 border border-black/10"
-            // style={{
-            //     backgroundImage:`url(${backgroundimage})`
-            // }}
             >
-                <h2 className="text-center text-2xl font-bold leading-tight">Sign in to your account</h2>
+                <h2 className="text-center text-2xl font-bold leading-tight">create your account</h2>
                 <p className="mt-2 text-center text-base text-white/60">
                     Don&apos;t have any account?&nbsp;
                     <Link
-                        to="/signup"
+                        to="/"
                         className="font-medium text-primary transition-all duration-200 hover:underline"
                     >
-                    Sign Up
+                        Sign In
                     </Link>
                 </p>
                 {error && <p className="mt-8 text-center">{error}</p>}
-                <form onSubmit={handleSubmit(handleLogin)} className='mt-8'>
+                <form onSubmit={handleSubmit(handleSignup)} className='mt-8'>
                     <div className='space-y-5 bg-color-orange'>
                         <input
                             label="Email: "
@@ -82,10 +78,19 @@ function Login() {
                                 required: true,
                             })}
                         />
+                        <input
+                            label="password: "
+                            type="password"
+                            className='w-full w-full rounded-lg flex items-center px-3 py-2 placeholder-gray-400 text-gray-700 relative bg-white bg-white rounded-t-md border border-gray-300 outline-none focus:outline-none focus:ring focus:border-amber-500'
+                            placeholder="Enter your password again"
+                            {...register("password", {
+                                required: true,
+                            })}
+                        />
                         <button
                             type="submit"
                             className="w-full bg-amber-500 p-3">
-                            <p className=' text-2xl font-bold leading-6 tracking-wide text-center'>Sign in</p>
+                            <p className=' text-2xl font-bold leading-6 tracking-wide text-center'>Sign up</p>
                         </button>
                     </div>
                 </form>
@@ -94,4 +99,4 @@ function Login() {
     )
 }
 
-export default Login
+export default SignUp

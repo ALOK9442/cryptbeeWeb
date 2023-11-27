@@ -4,11 +4,37 @@ import App from './app.jsx'
 import './index.css'
 import { Provider } from 'react-redux'
 import store from './store/store.jsx'
+import { RouterProvider, createBrowserRouter } from 'react-router-dom'
+import SignUp from './components/signup.jsx'
+import Login from './components/login.jsx'
+import MailOpener from './components/verifyemail.jsx'
+
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <App />,
+    children: [
+      {
+        path: "/",
+        element: <Login />,
+      },
+      {
+        path: "/signup",
+        element: <SignUp />
+      },
+      {
+        path: "/verifymail",
+        element: <MailOpener />
+      }
+    ]
+  }
+])
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <Provider store={store}>
-      <App />
+      <RouterProvider router={router} />
     </Provider>
   </React.StrictMode>,
 )
