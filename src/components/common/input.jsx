@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 const Input = React.forwardRef(function Input({
     label,
@@ -7,20 +7,22 @@ const Input = React.forwardRef(function Input({
     ...props
 }, ref) {
     return (
-        <div className='w-full'>
+        <fieldset className="border-2 border-white rounded-md">
             {label &&
-                <label>
+                <legend className="text-white-500 px-2 py-0">
                     {label}
-                </label>
+                </legend>
             }
-            <Input
-                type="text"
-                className={``}
-                ref={ref}
-                {...props}
-            />
-        </div>
-    )
-}
-)
-export default Input
+            <div className='w-full flex items-center'>
+                <input
+                    type={type}
+                    className={`text-white p-2 bg-transparent outline-none p-3 mt-0 pt-1`} 
+                    ref={ref}
+                    {...props}
+                />
+            </div>
+        </fieldset>
+    );
+});
+
+export default Input;
