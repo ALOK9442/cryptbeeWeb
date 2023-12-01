@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import logo from '../assets/logo/logo.png';
-import mailOpenerIllustration from '../assets/illustrations/mailOpener.svg';
-import backgroundImage from "../assets/background.png";
+import logo from '../../assets/logo/logo.svg';
+import mailOpenerIllustration from '../../assets/illustrations/mailOpener.svg';
+import backgroundImage from "../../assets/background.png";
 
 const MailOpener = () => {
   const location = useLocation();

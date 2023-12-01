@@ -2,23 +2,20 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useForm } from 'react-hook-form'
 import { Link, useNavigate } from 'react-router-dom'
-import { signUpUser } from '../services/auth/authservice'
-import { setEmail } from '../store/slices/authslice'
+import { signUpUser } from '../../services/auth/authservice'
+import { setEmail } from '../../store/slices/authslice'
+import Input from '../common/input'
+import Button from '../common/button'
 // import { logout as SignUp } from '../store/slices/authslice'
 
 function SignUp() {
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    // const navigate = useNavigate()
     const { register, handleSubmit, setValue } = useForm()
     const [error, setError] = useState()
-    
+    const [showPassword, setShowPassword] = useState(false);
+    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
-    // useEffect(() => {
-    //     setValue("email", "");
-    //     setValue("password", "")
-    // }, [])
-    
     const handleSignup = async (data) => {
         setError("")
         try {
@@ -34,9 +31,14 @@ function SignUp() {
             }
         } catch (error) {
             console.log(error)
-            // throw (error)
+            throw (error)
         }
     }
+
+    const passwordInputType = showPassword ? "text" : "password";
+    const confirmPasswordInputType = showConfirmPassword ? 'text' : 'password';
+
+
     return (
         <div
             className='flex items-center justify-center w-full'
@@ -56,7 +58,7 @@ function SignUp() {
                 {error && <p className="mt-8 text-center">{error}</p>}
                 <form onSubmit={handleSubmit(handleSignup)} className='mt-8'>
                     <div className='space-y-5 bg-color-orange'>
-                        <input
+                        <Input
                             label="Email: "
                             placeholder="Enter your email"
                             type="email"
@@ -69,29 +71,45 @@ function SignUp() {
                                 }
                             })}
                         />
-                        <input
-                            label="password: "
-                            type="password"
-                            className='w-full w-full rounded-lg flex items-center px-3 py-2 placeholder-gray-400 text-gray-700 relative bg-white bg-white rounded-t-md border border-gray-300 outline-none focus:outline-none focus:ring focus:border-amber-500'
-                            placeholder="Enter your password"
-                            {...register("password", {
-                                required: true,
-                            })}
-                        />
-                        <input
-                            label="password: "
-                            type="password"
-                            className='w-full w-full rounded-lg flex items-center px-3 py-2 placeholder-gray-400 text-gray-700 relative bg-white bg-white rounded-t-md border border-gray-300 outline-none focus:outline-none focus:ring focus:border-amber-500'
-                            placeholder="Enter your password again"
-                            {...register("password", {
-                                required: true,
-                            })}
-                        />
-                        <button
+                        <div className='relative'>
+                            <Input
+                                label='Password'
+                                type={passwordInputType}
+                                placeholder='Enter your password'
+                                {...register('password', {
+                                    required: true,
+                                })}
+                            />
+                            <button
+                                type='button'
+                                onClick={() => setShowPassword(!showPassword)}
+                                className='absolute top-1/2 right-3 transform -translate-y-1/2'
+                            >
+                                {showPassword ? 'Hide' : 'Show'}
+                            </button>
+                        </div>
+                        <div className='relative'>
+                            <Input
+                                label='Confirm Password'
+                                type={confirmPasswordInputType}
+                                placeholder='Enter your password again'
+                                {...register('confirmPassword', {
+                                    required: true,
+                                })}
+                            />
+                            <button
+                                type='button'
+                                onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                                className='absolute top-1/2 right-3 transform -translate-y-1/2'
+                            >
+                                {showConfirmPassword ? 'Hide' : 'Show'}
+                            </button>
+                        </div>
+                        <Button
                             type="submit"
                             className="w-full bg-amber-500 p-3">
                             <p className=' text-2xl font-bold leading-6 tracking-wide text-center'>Sign up</p>
-                        </button>
+                        </Button>
                     </div>
                 </form>
             </div>

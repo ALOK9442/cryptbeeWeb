@@ -5,10 +5,10 @@ import './index.css'
 import { Provider } from 'react-redux'
 import store from './store/store.jsx'
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
-import SignUp from './components/signup.jsx'
-import Login from './components/login.jsx'
-import MailOpener from './components/verifyemail.jsx'
-
+import SignUp from './components/authcomponents/signup.jsx'
+import Login from './components/authcomponents/login.jsx'
+import MailOpener from './components/authcomponents/verifyemail.jsx'
+import VerifyPan from './components/authcomponents/verifypan.jsx'
 
 const router = createBrowserRouter([
   {
@@ -26,6 +26,10 @@ const router = createBrowserRouter([
       {
         path: "/verifymail",
         element: <MailOpener />
+      },
+      {
+        path: "/verify-pan",
+        element: <VerifyPan />
       }
     ]
   }
