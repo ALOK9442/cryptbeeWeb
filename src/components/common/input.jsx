@@ -7,7 +7,7 @@ const Input = React.forwardRef(function Input({
     ...props
 }, ref) {
     return (
-        <fieldset className="border-2 border-white rounded-md">
+        <fieldset className="border-2 border-white rounded-md w-full">
             {label &&
                 <legend className="text-white-500 px-2 py-0">
                     {label}
@@ -16,7 +16,7 @@ const Input = React.forwardRef(function Input({
             <div className='w-full flex items-center'>
                 <input
                     type={type}
-                    className={`text-white p-2 bg-transparent outline-none p-3 mt-0 pt-1`} 
+                    className={`w-full text-white bg-transparent outline-none p-3 mt-0 pt-1 ${className}`} 
                     ref={ref}
                     {...props}
                 />

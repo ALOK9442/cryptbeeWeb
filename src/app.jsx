@@ -1,6 +1,6 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
-import backgroundImage from './assets/background.png'; // Replace with the correct path
+import backgroundImage from './assets/background.png';
 
 const App = () => {
   return (

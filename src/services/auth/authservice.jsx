@@ -4,7 +4,7 @@ import api from "../../components/api";
 // import { createAsyncThunk } from "@reduxjs/toolkit";
 
 const BASEURL = config.BASEURL
-
+// anshumannandan.com/auth/login/
 export const userLogin = async (email, password) => {
     try {
         console.log("trying to signIn");
@@ -109,32 +109,21 @@ export const verifyPan = async ({ email, pan, name }) => {
         console.log(`verifying pan of email: ${email}`)
         let response;
         if (pan && name) {
-            response = await api.post(BASEURL + config.verifyPan, { email, pan, name })
+            response = await api.post(BASEURL + config.panLink, { email, pan, name })
         } else if (!pan && name) {
-            response = await api.post(BASEURL + config.verifyPan, { email, name })
+            response = await api.post(BASEURL + config.panLink, { email, name })
         } else {
-            response = await api.post(BASEURL + config.verifyPan, { email, name })
+            response = await api.post(BASEURL + config.panLink, { email, name })
         }
-        if (response.status === 200) {
-            if (pan && name) {
-
-            }
-        }
+        console.log(response.status);
+        return response;
+        
     } catch (error) {
         console.log(error)
         throw (error)
     }
 }
 
-export const renewToken = async () => {
-    const refresh = localStorage.getItem('refreshtoken')
-    console.log(refresh)
-    try {
-        console.log("getting a new refresh token")
-        const response = await axios.post(BASEURL + config.renewTokenLink, { refresh })
-        console.log(refresh.data.access)
-        localStorage.setItem("refreshtoken",response.data.access)
-    } catch (error) {
+export const forgotpassword = async ({email, otp, password}) =>{
 
-    }
 }

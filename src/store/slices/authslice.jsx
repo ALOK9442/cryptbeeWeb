@@ -21,6 +21,8 @@ const authSlice = createSlice({
             state.isAuthenticated = false;
             state.accesstoken = null;
             state.refreshtoken = null;
+            localStorage.removeItem('accessToken');
+            localStorage.removeItem('refreshToken');
         },
         setEmail: (state, action) => {
             state.email = action.payload;

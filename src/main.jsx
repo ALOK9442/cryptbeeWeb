@@ -9,6 +9,9 @@ import SignUp from './components/authcomponents/signup.jsx'
 import Login from './components/authcomponents/login.jsx'
 import MailOpener from './components/authcomponents/verifyemail.jsx'
 import VerifyPan from './components/authcomponents/verifypan.jsx'
+import SetPassword from './components/authcomponents/forgotpassword.jsx'
+import SendEmail from './components/authcomponents/forgotpassword-email.jsx'
+import EnterOtp from './components/authcomponents/otp.jsx'
 
 const router = createBrowserRouter([
   {
@@ -30,6 +33,18 @@ const router = createBrowserRouter([
       {
         path: "/verify-pan",
         element: <VerifyPan />
+      },
+      {
+        path: "/forgot-password",
+        element: <SetPassword />
+      },
+      {
+        path:"/forgot-password/email",
+        element:<SendEmail />
+      },
+      {
+        path :"/otp",
+        element:<EnterOtp />
       }
     ]
   }
