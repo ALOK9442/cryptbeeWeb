@@ -158,3 +158,8 @@ export const changepassword = async ({ oldpass, newpass }) => {
         throw (error)
     }
 }
+
+export const checkVerification = async () => {
+    console.log("checking verification")
+    
+}
