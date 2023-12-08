@@ -1,14 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 import { signUpUser } from '../../services/auth/authservice';
-import { setEmail } from '../../store/slices/authslice';
+import { logout, setEmail } from '../../store/slices/authslice';
 import Input from '../common/input';
 import Button from '../common/button';
 import logo from "../../assets/logo/logo.png"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import store from '../../store/store';
 
 function SignUp() {
     const dispatch = useDispatch();
@@ -18,6 +19,9 @@ function SignUp() {
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
+    useEffect(() => {
+        dispatch(store.dispatch(logout()))
+    }, [])
     const handleSignup = async (data) => {
         setError("");
         try {

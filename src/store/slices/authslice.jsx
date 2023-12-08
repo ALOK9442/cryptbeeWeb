@@ -1,9 +1,9 @@
 import { createSlice, isAction } from "@reduxjs/toolkit"
 
-const accesstoken = localStorage.getItem('accesstoken') ? localStorage.getItem('accesstoken') : null
-const refreshtoken = localStorage.getItem('refreshtoken') ? localStorage.getItem('refreshtoken') : null
+const accesstoken = localStorage.getItem('accessToken') ? localStorage.getItem('accessToken') : null
+const refreshtoken = localStorage.getItem('refreshToken') ? localStorage.getItem('refreshToken') : null
 const initialState = {
-    isAuthenticated: null,
+    isAuthenticated: Boolean(localStorage.getItem('accessToken')),
     accesstoken,
     refreshtoken,
 }

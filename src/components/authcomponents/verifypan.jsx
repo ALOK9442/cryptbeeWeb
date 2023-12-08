@@ -15,10 +15,11 @@ function VerifyPan() {
   const navigate = useNavigate();
 
   const onSubmit = async (data) => {
-    console.log(`trying to verify pan ${data.fullName},${data.panNumber}`)
-    const response = await verifyPan(data.fullName, data.panNumber)
+    console.log(`trying to verify pan ${data.name},${data.panNumber}`)
+    const response = await verifyPan(data.name, data.panNumber)
+    console.log(response.data)
     if (response.status === 200) {
-      dispatch(panVerified({ fullName: data.fullName, pan: data.panNumber }))
+      dispatch(panVerified({ name: data.name, pan: data.panNumber }))
     }
     // console.log(data);
   };
@@ -49,7 +50,7 @@ function VerifyPan() {
                 placeholder="Enter your Full Name"
                 type="text"
                 className='w-full p-2 bg-transparent text-white'
-                {...register('fullName', {
+                {...register('name', {
                   required: true,
                 })}
               />

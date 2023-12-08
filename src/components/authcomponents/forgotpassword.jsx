@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import Input from '../common/input';
 import Button from '../common/button';
 import logo from '../../assets/logo/logo.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import { resetPassword } from '../../services/auth/authservice';
 
 function SetPassword() {
   const { register, handleSubmit, watch, setError, formState: { errors } } = useForm();
@@ -17,6 +18,8 @@ function SetPassword() {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [passwordError, setPasswordError] = useState('');
   const [confirmPasswordError, setConfirmPasswordError] = useState('');
+  const email = useSelector(state => state.user.email)
+  const otpValue = useSelector(state => state.user.otp)
 
   const handlePasswordChange = (value) => {
     setPasswordError('');
@@ -56,7 +59,14 @@ function SetPassword() {
       return;
     }
 
-    // Your logic for handling the form submission
+    try {
+      console.log(email)
+      const response = await resetPassword(email,otpValue, data.password)
+      navigate('/')
+    } catch (error) {
+      console.log(error)
+      throw (error)
+    }
   };
 
   const passwordInputType = showPassword ? 'text' : 'password';

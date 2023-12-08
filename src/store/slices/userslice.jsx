@@ -11,20 +11,34 @@ const initialState = {
     twoFactor: false,
     panVerify: false,
     wallet: 0,
+    otp:"",
 }
 
 const userSlice = createSlice({
     name: 'user',
     initialState,
     reducers: {
+
         panVerified: (state, action) => {
             state.panVerify = true
-            state.fullname = action.payload.fullname
+            state.name = action.payload.name
             state.pan = action.payload.pan
+        },
+
+        updateProfilePhoto:(state,action) =>{
+            state.photo = action.payload.photo
+        },
+
+        setForgotPassEmail: (state, action) => {
+            state.email = action.payload;
+        },
+
+        setOtp:(state,action)=>{
+            state.otp = action.payload
         }
     }
 })
 
-export const { panVerified } = userSlice.actions
+export const { panVerified, updateProfilePhoto,setForgotPassEmail,setOtp } = userSlice.actions
 
 export default userSlice.reducer

@@ -12,11 +12,17 @@ console.log("in the api interceptor")
 api.interceptors.request.use(
     (config) => {
         console.log("in the request")
-        const { access: accessToken } = store.getState().auth;
-        if (accessToken) {
-            config.headers.Authorization = `Bearer ${accessToken}`;
+        // const { access: accessToken } = store.getState().auth.accesstoken;
+        const accessTokenItem = localStorage.getItem("accessToken");
+        if (accessTokenItem !== null) {
+            const accessToken = accessTokenItem;
+            console.log("in the access token", accessToken)
+            if (accessToken) {
+                console.log(accessToken)
+                config.headers.Authorization = `Bearer ${accessToken}`;
+            }
         }
-        console.log(config.accessToken)
+        console.log(config.headers)
         return config;
     },
     (error) => {
@@ -30,24 +36,29 @@ api.interceptors.response.use(
         return response;
     },
     async (error) => {
-        console.log("error:",error)
+        console.log("Error Response:", error);
+
         const originalRequest = error.config;
         if (error.response.status === 401 && !originalRequest._retry) {
             originalRequest._retry = true;
 
             try {
-                console.log("trying for refresh token")
-                const { refresh: refreshToken } = store.getState().auth;
-                const response = await axios.post(config.BASEURL + config.renewTokenLink, { refreshToken });
+                console.log("Trying for refresh token");
+                // const { refresh: refreshToken } = store.getState().auth;
+                const refreshTokenItem = localStorage.getItem("refreshToken");
+                console.log(refreshTokenItem)
+                const response = await axios.post(config.BASEURL + config.renewTokenLink, { refreshTokenItem });
                 localStorage.setItem("accessToken", response.data.access);
+                console.log("new access", response.data.access)
+                console.log("new refresh", response.data.refresh)
                 localStorage.setItem("refreshToken", response.data.refresh);
                 originalRequest.headers.Authorization = `Bearer ${response.data.access}`;
                 store.dispatch(login({ access: response.data.access, refresh: response.data.refresh }));
                 return api(originalRequest);
-            } catch (error) {
-                console.log("logout")
+            } catch (refreshError) {
+                console.log("Error refreshing token:", refreshError);
                 store.dispatch(logout());
-                throw error;
+                throw refreshError;
             }
         }
         throw error;

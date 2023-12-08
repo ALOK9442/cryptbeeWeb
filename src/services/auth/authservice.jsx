@@ -42,7 +42,7 @@ export const signUpUser = async (email, password) => {
     }
 }
 
-export const sendEmailOtp = async ({ email }) => {
+export const sendEmailOtp = async (email) => {
     try {
         console.log(`sending otp to email: ${email}`);
         const response = await axios.post(BASEURL + config.sendEmailOtpLink,
@@ -61,7 +61,7 @@ export const sendEmailOtp = async ({ email }) => {
     }
 }
 
-export const verifyEmailOtp = async ({ email, otp }) => {
+export const verifyEmailOtp = async ( email, otp ) => {
     try {
         console.log(`began verifying email otp ${email}, ${otp}`)
         const response = await axios.post(BASEURL + config.verifyEmailOtpLink, {
@@ -81,9 +81,9 @@ export const verifyEmailOtp = async ({ email, otp }) => {
     }
 }
 
-export const resetPassword = async ({ email, otp, password }) => {
+export const resetPassword = async ( email, otp, password ) => {
     try {
-        console.log(`trying to resetpassword ${email} ${otp}${password}`)
+        console.log(`trying to resetpassword ${email}`)
         const response = await axios.patch(BASEURL + config.resetPassLink,
             {
                 email,
@@ -104,7 +104,7 @@ export const resetPassword = async ({ email, otp, password }) => {
     }
 }
 
-export const verifyPan = async ({ email, pan, name }) => {
+export const verifyPan = async ( email, pan, name ) => {
     try {
         console.log(`verifying pan of email: ${email}`)
         let response;
@@ -117,13 +117,44 @@ export const verifyPan = async ({ email, pan, name }) => {
         }
         console.log(response.status);
         return response;
-        
+
     } catch (error) {
         console.log(error)
         throw (error)
     }
 }
 
-export const forgotpassword = async ({email, otp, password}) =>{
+export const forgotpassword = async ({ email, otp, password }) => {
+    try {
+        const response = await axios.patch(BASEURL + config.resetPassLink, {
+            email, otp, password
+        },
+            {
+                headers: {
+                    'conten-type': 'application/json'
+                },
+            }
+        )
+        console.log(response)
+        return response;
+    } catch (error) {
+        console.log(error)
+        throw (error)
+    }
+}
 
+export const changepassword = async ({ oldpass, newpass }) => {
+    console.log("changing password")
+    try {
+        console.log("trying password")
+        const response = await api.put(BASEURL + config.changePasswordLink, {
+            oldpass,
+            newpass
+        })
+        console.log(response)
+        return response;
+    } catch (error) {
+        console.log(error)
+        throw (error)
+    }
 }

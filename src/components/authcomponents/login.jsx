@@ -1,37 +1,46 @@
-import React, { useState } from 'react'
+import React, { useState,useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 // import backgroundimage from "../assets/background.png"
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import Input from '../common/input'
 import Button from '../common/button'
 import { useForm } from 'react-hook-form'
-import { login as authLogin } from '../../store/slices/authslice'
+import { login as authLogin, logout } from '../../store/slices/authslice'
 // import axios from 'axios'
 import { userLogin } from '../../services/auth/authservice'
 import logo from "../../assets/logo/logo.png"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import store from '../../store/store'
+import { setOtp } from '../../store/slices/userslice'
 
 function Login() {
     const dispatch = useDispatch();
     const { register, handleSubmit, setValue, watch } = useForm();
     const [error, setError] = useState();
     const [showPassword, setShowPassword] = useState(false);
+    const navigate = useNavigate();
+    useEffect(() => {
+        dispatch(store.dispatch(logout()))
+        dispatch(store.dispatch(setOtp('')))
+    }, [])
 
     const handleLogin = async (data) => {
         setError("");
         try {
             console.log("trying on login page");
             const response = await userLogin(data.email, data.password);
-            if (response) {
-                localStorage.setItem("accessToken", response.data.access);
-                localStorage.setItem("refreshToken", response.data.refresh);
-                dispatch(authLogin(response.data));
-                console.log(response.data.refresh);
-                console.log(response.data.access);
-                setValue("email", "");
-                setValue("password", "");
-            }
+            // if (response) {
+            localStorage.setItem("accessToken", response.data.access);
+            localStorage.setItem("refreshToken", response.data.refresh);
+            console.log(response.data.refresh);
+            console.log(response.data.access);
+            console.log(response.data.message)
+            dispatch(authLogin(response.data));
+            setValue("email", "");
+            setValue("password", "");
+            navigate('/home')
+            // }
         } catch (error) {
             console.log(error);
             setError("Invalid email or password.");
@@ -95,15 +104,17 @@ function Login() {
                                 </button>
                             </div>
                             <div className="text-right text-sm text-white">
-                                <Link to="/forgot-password" className="hover:underline">
+                                <Link to="/forgot-password/email" className="hover:underline">
                                     Forgot Password
                                 </Link>
                             </div>
+                            {/* <Link to='/home'> */}
                             <Button
                                 type="submit"
                                 className="w-full">
                                 <p className='text-2xl font-bold leading-6 tracking-wide text-center'>Sign in</p>
                             </Button>
+                            {/* </Link> */}
                             <p className="mt-2 text-center text-base text-white">
                                 Don&apos;t have an account?&nbsp;
                                 <Link
