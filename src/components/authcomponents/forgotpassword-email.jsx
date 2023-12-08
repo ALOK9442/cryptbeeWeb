@@ -1,16 +1,33 @@
-import React from 'react'
+import React, { useState } from 'react'
 import forgotpassillustration from '../../assets/illustrations/forget_pass_illustration.svg';
 import { useForm } from 'react-hook-form';
 import Input from '../common/input';
 import logo from "../../assets/logo/logo.png";
 import Button from '../common/button';
+import { useNavigate } from 'react-router';
+import { sendEmailOtp } from '../../services/auth/authservice';
+import { useDispatch } from 'react-redux';
+import { setForgotPassEmail } from '../../store/slices/userslice';
 
 function SendEmail() {
     const { register, handleSubmit } = useForm()
-
-    const handleClick = async () => {
-
+    const [error, setError] = useState()
+    const navigate = useNavigate()
+    const dispatch = useDispatch()
+    const handleClick = async (data) => {
+        setError("")
+        console.log("data on email page")
+        try {
+            const response = await sendEmailOtp(data.email)
+            console.log(response.data)
+            dispatch(setForgotPassEmail(data.email))
+            navigate('/otp')
+        } catch (error) {
+            console.log(error)
+            throw (error)
+        }
     }
+
     return (
         <>
             <div className='space-y-6'>
@@ -39,7 +56,7 @@ function SendEmail() {
                     <form onSubmit={handleSubmit(handleClick)} className='mt-8 w-80 space-y-6'>
                         <Input
                             label="Email"
-                            type="text"
+                            type="email"
                             placeholder="Enter your email"
                             {...register("email", {
                                 required: true,
@@ -51,7 +68,7 @@ function SendEmail() {
                             })}
                         />
                         <Button
-                            type='submit'
+                            type="submit"
                             className='w-full'>
                             send otp
                         </Button>
