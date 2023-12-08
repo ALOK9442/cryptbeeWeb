@@ -12,7 +12,8 @@ import logo from "../../assets/logo/logo.png"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import store from '../../store/store'
-import { setOtp } from '../../store/slices/userslice'
+import { setOtp, userDetails } from '../../store/slices/userslice'
+import { getUser } from '../../services/apiservices.jsx/apiintegration'
 
 function Login() {
     const dispatch = useDispatch();
@@ -37,6 +38,9 @@ function Login() {
             console.log(response.data.access);
             console.log(response.data.message)
             dispatch(authLogin(response.data));
+            const result = await getUser();
+            console.log("result", result.data)
+            dispatch(userDetails(result.data));
             setValue("email", "");
             setValue("password", "");
             navigate('/home')

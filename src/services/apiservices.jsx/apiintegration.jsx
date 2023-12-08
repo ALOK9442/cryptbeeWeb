@@ -48,3 +48,16 @@ export const getHoldings = async () =>{
         throw(error)
     }
 }
+
+export const getUser = async()=>{
+    console.log("getting user details")
+    try {
+        console.log("in trying")
+        const response = await api.get(config.userDetails)
+        console.log(response.data)
+        return response;
+    } catch (error) {
+        console.log(error)
+        throw(error)
+    }
+}
