@@ -4,8 +4,8 @@ import backgroundImage from './assets/background.png';
 
 const App = () => {
   return (
-    <div className="min-h-screen bg-cover bg-center" style={{ backgroundImage: `url(${backgroundImage})` }}>
-      <div className="flex flex-col items-center justify-center h-screen text-white">
+    <div className="min-h-screen bg-cover bg-center overflow-y-hidden" style={{ backgroundImage: `url(${backgroundImage})` }}>
+      <div className="flex flex-col h-screen text-white">
         <main>
           <Outlet />
         </main>

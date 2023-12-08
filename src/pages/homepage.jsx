@@ -81,20 +81,26 @@ function HomePage() {
   }
 
   return (
-    <div className='flex items-center justify-center'>
+    <div className='flex justify-center w-80 mx-auto sm:w-full md:w-2/3 lg:w-1/2 xl:w-full mt-2 bg-gray-900'>
       {
         authStatus ? (
-          <div>
+          <div className=''>
             <div>
               {
                 panStatus ? (
-                  <div>
-                    <h1> your holdings</h1>
-                    { holdings &&
-                      holdings.map((item,index)=>(
-                        <li key={index}>{item[0]} <img src={item[1]} alt='coin-img'/> {item[2]}</li>
-                      ))
-                    }
+                  <div className='space-y-2'>
+                    <div className=''>
+                      <h1> My Holdings</h1>
+                    </div>
+                    <div className='flex space-x-2'>
+                      {holdings &&
+                        holdings.map((item, index) => (
+                          <div key={index} className='mt-4'>
+                            <img src={`https://www.${item[1]}`} alt='coin-img' className='w-8 h-8' />
+                          </div>
+                        ))
+                      }
+                    </div>
                   </div>
                 ) :
                   (
@@ -111,11 +117,13 @@ function HomePage() {
               }
             </div>
 
-            <div>
+            <div className="min-h-screen flex items-center justify-center mt-4">
               {news && (
-                <ul style={{ listStyleType: 'none', padding: 0, maxHeight: '400px', overflowY: 'auto', margin: 'auto' }}>
+                <ul className="list-none p-0 max-h-screen overflow-y-auto mx-auto">
                   {news.map(item => (
-                    <li key={item.headline} style={{ marginBottom: '10px', padding: '10px', border: '1px solid #ccc', borderRadius: '5px' }}>{item.headline}</li>
+                    <li key={item.headline} className="p-5 border border-solid border-gray-300 rounded-md">
+                      {item.headline}
+                    </li>
                   ))}
                 </ul>
               )}
