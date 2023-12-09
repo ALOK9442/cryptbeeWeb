@@ -13,6 +13,8 @@ import SetPassword from './components/authcomponents/forgotpassword.jsx'
 import SendEmail from './components/authcomponents/forgotpassword-email.jsx'
 import EnterOtp from './components/authcomponents/otp.jsx'
 import HomePage from './pages/homepage.jsx'
+import AuthLayout from './protectedrouting/authlayout.jsx'
+
 
 const router = createBrowserRouter([
   {
@@ -40,16 +42,20 @@ const router = createBrowserRouter([
         element: <SetPassword />
       },
       {
-        path:"/forgot-password/email",
-        element:<SendEmail />
+        path: "/forgot-password/email",
+        element: <SendEmail />
       },
       {
-        path :"/otp",
-        element:<EnterOtp />
+        path: "/otp",
+        element: <EnterOtp />
       },
       {
-        path:"/home",
-        element:<HomePage />
+        path: "/home",
+        element: (
+          <AuthLayout authentication>
+            <HomePage />
+          </AuthLayout>
+        )
       }
     ]
   }
