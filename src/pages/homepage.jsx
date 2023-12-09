@@ -4,12 +4,16 @@ import { getHoldings, getNews, getUser } from '../services/apiservices.jsx/apiin
 import { useId } from 'react';
 import panVerifyImage from "../assets/illustrations/pan.svg"
 import { userDetails } from '../store/slices/userslice';
+import { Link } from 'react-router-dom';
 
 function HomePage() {
   const [isLoading, setIsLoading] = useState(true);
   const [news, setNews] = useState(null);
   const dispatch = useDispatch();
   const [holdings, setHoldings] = useState([]);
+  const [userName, setUserName] = useState("");
+  const [profilePhoto, setProfilePhoto] = useState("")
+
   const authStatus = useSelector(state => state.auth.isAuthenticated);
   console.log(authStatus);
   const id = useId();
@@ -22,6 +26,14 @@ function HomePage() {
   const getUserDetails = async () => {
     const result = await getUser();
     console.log("result", result.data)
+    const setName = result.data.name;
+    console.log(setName.toUpperCase())
+    // setName.toUpperCase();
+    setUserName(setName)
+
+    const photoLink = result.data.profile_picture;
+    setProfilePhoto(photoLink)
+    console.log(photoLink)
     dispatch(userDetails(result.data));
   }
 
@@ -85,18 +97,22 @@ function HomePage() {
       {
         authStatus ? (
           <div className=''>
+            <div className='mt-2 flex items-center space-x-4 bg-black-500'>
+              <img src={`${profilePhoto}`} alt='profile_image' className='w-12 h-12 rounded-3xl' />
+              <h1>{userName.toUpperCase()}</h1>
+            </div>
             <div>
               {
                 panStatus ? (
-                  <div className='space-y-2'>
+                  <div className='space-y-2 mt-2'>
                     <div className=''>
                       <h1> My Holdings</h1>
                     </div>
-                    <div className='flex space-x-2'>
+                    <div className='flex flex-wrap space-x-2'>
                       {holdings &&
                         holdings.map((item, index) => (
                           <div key={index} className='mt-4'>
-                            <img src={`https://www.${item[1]}`} alt='coin-img' className='w-8 h-8' />
+                            <img src={`https://www.${item[1]}`} alt='coin-img' className='w-12 h-12' />
                           </div>
                         ))
                       }
@@ -105,9 +121,6 @@ function HomePage() {
                 ) :
                   (
                     <div>
-                      <div>
-                        <h1>Welcome to news page</h1>
-                      </div>
                       <h1>
                         <img src={panVerifyImage} alt='pan' />
                         <p>Verify your pan</p>
@@ -117,16 +130,38 @@ function HomePage() {
               }
             </div>
 
-            <div className="min-h-screen flex items-center justify-center mt-4">
+            <div>
+              <div className='mt-6 p-2'>
+                <h1>Crypto News</h1>
+              </div>
               {news && (
-                <ul className="list-none p-0 max-h-screen overflow-y-auto mx-auto">
-                  {news.map(item => (
-                    <li key={item.headline} className="p-5 border border-solid border-gray-300 rounded-md">
-                      {item.headline}
-                    </li>
-                  ))}
-                </ul>
+                <div className="news-container overflow-y-auto max-h-96 px-0 p-4 mb-8 bg-transparent">
+                  <ul className="p-0">
+                    {news.map(item => (
+                      <ul key={item.headline} className="pl-0 p-5 flex items-center">
+                        <a href={item.news} target="_blank" rel="noopener noreferrer" className="flex items-center ">
+                          <img src={`${item.image}`} className='mr-2' />
+                          {item.headline}
+                        </a>
+                      </ul>
+                    ))}
+                  </ul>
+                </div>
               )}
+            </div>
+            <div className='flex items-center justify-evenly bg-black rounded-xl p-4 sticky bottom-0 left-0 right-0 z-10'>
+              <Link to="/home">
+                <h1>Home</h1>
+              </Link>
+              <Link to="/invest">
+                <h1>Invest</h1>
+              </Link>
+              <Link to="/wallet">
+                <h1>Wallet</h1>
+              </Link>
+              <Link to="/profile">
+                <h1>Profile</h1>
+              </Link>
             </div>
           </div>
         ) : (

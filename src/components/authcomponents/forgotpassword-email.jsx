@@ -30,8 +30,8 @@ function SendEmail() {
 
     return (
         <>
-            <div className='space-y-6'>
-                <div className='mb-6'>
+            <div className='space-y-6 '>
+                <div className='mb-6 '>
                     <div className="absolute top-1 left-1/2 transform -translate-x-1/2 flex items-center justify-center">
                         <div className="flex items-center mb-12">
                             <img src={logo} alt="Logo" className="w-8 h-8 mr-2" />
@@ -40,7 +40,7 @@ function SendEmail() {
                             </div>
                         </div>
                     </div>
-                    <div className='space-y-1'>
+                    <div className='space-y-1 mt-12'>
                         <div className='flex items-center justify-center'>
                             <img src={forgotpassillustration} alt='forget password illustration' />
                         </div>
@@ -52,8 +52,8 @@ function SendEmail() {
                         </div>
                     </div>
                 </div>
-                <div>
-                    <form onSubmit={handleSubmit(handleClick)} className='mt-8 w-80 space-y-6'>
+                <div className='flex items-center justify-center'>
+                    <form onSubmit={handleSubmit(handleClick)} className='mt-8 w-80 space-y-6 '>
                         <Input
                             label="Email"
                             type="email"
