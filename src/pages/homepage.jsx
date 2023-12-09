@@ -98,7 +98,7 @@ function HomePage() {
         authStatus ? (
           <div className=''>
             <div className='mt-2 flex items-center space-x-4 bg-black-500'>
-              <img src={`${profilePhoto}`} alt='profile_image' className='w-12 h-12 rounded-3xl' />
+              <img src={`${profilePhoto}`} alt='profile_image' className='w-12 h-12 rounded-full object-cover'/>
               <h1>{userName.toUpperCase()}</h1>
             </div>
             <div>
@@ -149,7 +149,7 @@ function HomePage() {
                 </div>
               )}
             </div>
-            <div className='flex items-center justify-evenly bg-black rounded-xl p-4 sticky bottom-0 left-0 right-0 z-10'>
+            <div className='flex items-center justify-evenly bg-black rounded-xl p-4 sticky bottom-0 left-0 right-0 z-10 text-amber-500'>
               <Link to="/home">
                 <h1>Home</h1>
               </Link>
