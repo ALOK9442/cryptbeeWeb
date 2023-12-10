@@ -1,10 +1,13 @@
 import axios from "axios";
 import config from "../../config/config";
 import api from "../../components/api";
+import { useSelector } from "react-redux";
 // import { createAsyncThunk } from "@reduxjs/toolkit";
 
 const BASEURL = config.BASEURL
+// const userEmail = useSelector(state=>state.user.email)
 // anshumannandan.com/auth/login/
+
 export const userLogin = async (email, password) => {
     try {
         console.log("trying to signIn");
@@ -61,7 +64,7 @@ export const sendEmailOtp = async (email) => {
     }
 }
 
-export const verifyEmailOtp = async ( email, otp ) => {
+export const verifyEmailOtp = async (email, otp) => {
     try {
         console.log(`began verifying email otp ${email}, ${otp}`)
         const response = await axios.post(BASEURL + config.verifyEmailOtpLink, {
@@ -81,7 +84,7 @@ export const verifyEmailOtp = async ( email, otp ) => {
     }
 }
 
-export const resetPassword = async ( email, otp, password ) => {
+export const resetPassword = async (email, otp, password) => {
     try {
         console.log(`trying to resetpassword ${email}`)
         const response = await axios.patch(BASEURL + config.resetPassLink,
@@ -104,7 +107,7 @@ export const resetPassword = async ( email, otp, password ) => {
     }
 }
 
-export const verifyPan = async ( email, pan, name ) => {
+export const verifyPan = async (email, pan, name) => {
     try {
         console.log(`verifying pan of email: ${email}`)
         let response;
@@ -161,5 +164,98 @@ export const changepassword = async ({ oldpass, newpass }) => {
 
 export const checkVerification = async () => {
     console.log("checking verification")
-    
+
+}
+
+export const twoFactor = async (phoneNumber) => {
+    console.log("newtwwofactor")
+    try {
+        console.log("trying two factor")
+        const response = await api.post(config.newTwoFactor, {
+            phoneNumber
+        })
+        console.log(response.data)
+        return response
+    } catch (error) {
+        console.log(error)
+        throw (error)
+    }
+}
+
+export const twoFactorVerification = async (otp) => {
+    console.log("twofactorverification")
+    try {
+        console.log("Trying two factor verification")
+        const response = await api.put(config.verifyTwoFactor, { otp })
+        console.log(response.data)
+        return response
+    } catch (error) {
+        console.log(error)
+        throw (error)
+    }
+}
+
+export const enableTwoFa = async () => {
+    console.log("2fa")
+    try {
+        console.log("2fa trying")
+        const response = await api.put(config.enableTwoFactor)
+        console.log(response.data)
+        return response
+    } catch (error) {
+        console.log(error)
+        throw (error)
+    }
+}
+
+export const disableTwoFa = async () => {
+    console.log("disable2fa")
+    try {
+        console.log("trying disable2fa")
+        const response = await api.put(config.disableTwoFactor)
+        console.log(response.data)
+        return response
+    } catch (error) {
+        console.log(error)
+        throw(error)
+    }
+}
+
+export const twoFactorLogin = async ( otp,userEmail ) =>{
+    console.log("twofactorlogin")
+    try {
+        console.log("tryingtwofactorlogin")
+        const response = await axios.post(BASEURL+config.loginTwoFactorVerify,{
+            otp, userEmail
+        })
+        console.log(response.data)
+        return response
+    } catch (error) {
+        console.log(error)
+        throw(error)
+    }
+}
+
+export const watchings = async (coinName) =>{
+    try {
+        console.log("watching")
+        const response = await api.get(config.inWatchlist + coinName)
+        console.log(response.data)
+        return response
+    } catch (error) {
+        console.log(error)
+        throw(error)
+    }
+}
+
+export const getTransactions = async () =>{
+    try {
+        console.log("trying to get transactions history")
+        const response = api.get(config.transactionLink)
+        console.log(response.data)
+        return response
+    } catch (error) {
+        console.log(error)
+        throw(error)
+    }
 }
