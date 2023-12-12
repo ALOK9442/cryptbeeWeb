@@ -92,7 +92,8 @@ function HomePage() {
   }
 
   return (
-    <div className='flex justify-center w-80 mx-auto sm:w-full md:w-2/3 lg:w-1/2 xl:w-full mt-2 bg-gray-900'>
+    <div className='flex flex-col min-h-screen'>
+    <div className='flex flex-grow justify-center w-80 mx-auto sm:w-full md:w-2/3 lg:w-1/2 xl:w-full mt-2 bg-gray-900'>
       {
         authStatus ? (
           <div className=''>
@@ -103,26 +104,28 @@ function HomePage() {
             <div>
               {
                 !panStatus &&
-                  (
-                    <div>
-                      <h1>
-                        <img src={panVerifyImage} alt='pan' />
-                        <p>Verify your pan</p>
-                      </h1>
-                    </div>
-                  )
+                (
+                  <div>
+                    <h1>
+                      <img src={panVerifyImage} alt='pan' />
+                      <p>Verify your pan</p>
+                    </h1>
+                  </div>
+                )
               }
             </div>
             <Outlet />
-            <div className='sticky bottom-0 left-0 right-0 z-10'>
-              <Footer />
-            </div>
           </div>
         ) : (
           <h1>you are not authenticated</h1>
         )
       }
+      
     </div>
+    <div className='sticky bottom-4 top-h-screen left-0 right-0 z-10'>
+          <Footer />
+        </div>
+        </div>
   );
 
 }

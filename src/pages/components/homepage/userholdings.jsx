@@ -22,7 +22,7 @@ function UserHolding() {
                 console.log("trying to get holdings")
                 const response = await getHoldings();
                 const output = response.data;
-                console.log(output)
+                console.log("output",output)
                 setHoldings(response.data.MyHoldings)
             } catch (error) {
                 console.log(error)
