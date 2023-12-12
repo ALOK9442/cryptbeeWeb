@@ -2,12 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getHoldings, getNews, getUser } from '../../../services/apiservices.jsx/apiintegration';
 import { useId } from 'react';
-import panVerifyImage from "../../../assets/illustrations/pan.svg"
-// import { userDetails } from '../store/slices/userslice';
-// import { Link, Outlet } from 'react-router-dom';
-// import News from './components/homepage/news';
-// import Footer from './components/footer/footer';
-// import { Outlet } from 'react-router-dom';
 
 function UserHolding() {
     const dispatch = useDispatch();

@@ -16,6 +16,7 @@ import HomePage from './pages/homepage.jsx'
 import AuthLayout from './protectedrouting/authlayout.jsx'
 import Invest from './pages/investpage.jsx'
 import News from './pages/components/homepage/news.jsx'
+import UserHolding from './pages/components/homepage/userholdings.jsx'
 
 
 const router = createBrowserRouter([
@@ -62,7 +63,12 @@ const router = createBrowserRouter([
           // Nested route for /invest under /home
           {
             path: '',
-            element: <News />,
+            element: (
+              <>
+                <UserHolding />
+                <News />
+              </>
+            ),
           },
           {
             path: "invest",

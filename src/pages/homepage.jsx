@@ -80,12 +80,7 @@ function HomePage() {
     }
 
     console.log("2")
-    //call both userholdings and fetchNews function if the 
-    if (authStatus && panStatus) {
-      getUserHolding();
-      fetchNews();
-    }
-    else if (authStatus) {
+    if (authStatus) {
       fetchNews();
     } else {
       setIsLoading(false);
@@ -107,9 +102,7 @@ function HomePage() {
             </div>
             <div>
               {
-                panStatus ? (
-                  <UserHolding/>
-                ) :
+                !panStatus &&
                   (
                     <div>
                       <h1>
@@ -121,7 +114,7 @@ function HomePage() {
               }
             </div>
             <Outlet />
-            <div className=' sticky bottom-0 left-0 right-0 z-10'>
+            <div className='sticky bottom-0 left-0 right-0 z-10'>
               <Footer />
             </div>
           </div>
