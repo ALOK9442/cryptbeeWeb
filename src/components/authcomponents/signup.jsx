@@ -55,7 +55,7 @@ function SignUp() {
                 </div>
             </div>
             <div className='flex items-center justify-center w-full mt-20'>
-                <div className="mx-auto w-full max-w-lg rounded-xl p-10 border border-white">
+                <div className="mx-auto max-w-lg rounded-xl p-10 border border-white">
                     <h2 className="text-center text-2xl font-bold leading-tight">Create your account</h2>
                     {error && <p className="mt-8 text-center text-red-500">{error}</p>}
                     <form onSubmit={handleSubmit(handleSignup)} className='mt-8 w-80'>

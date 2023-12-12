@@ -14,6 +14,8 @@ import SendEmail from './components/authcomponents/forgotpassword-email.jsx'
 import EnterOtp from './components/authcomponents/otp.jsx'
 import HomePage from './pages/homepage.jsx'
 import AuthLayout from './protectedrouting/authlayout.jsx'
+import Invest from './pages/investpage.jsx'
+import News from './pages/components/homepage/news.jsx'
 
 
 const router = createBrowserRouter([
@@ -55,11 +57,26 @@ const router = createBrowserRouter([
           <AuthLayout authentication>
             <HomePage />
           </AuthLayout>
-        )
+        ),
+        children: [
+          // Nested route for /invest under /home
+          {
+            path: '',
+            element: <News />,
+          },
+          {
+            path: "invest",
+            element: (
+              <AuthLayout authentication>+
+                <Invest />
+              </AuthLayout>
+            )
+          }
+        ]
       }
     ]
   }
-])
+]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>

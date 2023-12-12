@@ -61,7 +61,7 @@ function SetPassword() {
 
     try {
       console.log(email)
-      const response = await resetPassword(email,otpValue, data.password)
+      const response = await resetPassword(email, otpValue, data.password)
       navigate('/')
     } catch (error) {
       console.log(error)
@@ -74,73 +74,77 @@ function SetPassword() {
 
   return (
     <>
-      <div className="absolute top-1 left-1/2 transform -translate-x-1/2 flex items-center justify-center">
-        <div className="flex items-center">
-          <img src={logo} alt="Logo" className="w-8 h-8 mr-2" />
-          <div>
-            <p className="text-white text-sm font-bold">Cryptbee</p>
+      <div className="flex flex-col items-center justify-center h-screen">
+        <div className="absolute top-1 left-1/2 transform -translate-x-1/2 flex items-center justify-center">
+          <div className="flex items-center">
+            <img src={logo} alt="Logo" className="w-8 h-8 mr-2" />
+            <div>
+              <p className="text-white text-sm font-bold">Cryptbee</p>
+            </div>
           </div>
         </div>
-      </div>
-      <p className='font-bold text-3xl mb-6'>Set Password</p>
-      <div>
-        <form onSubmit={handleSubmit(onClick)} className='space-y-8 border border-white rounded-md p-12 w-80'>
-          <div className="relative">
-            <Input
-              label="Password"
-              type={passwordInputType}
-              placeholder="Enter Your New Password"
-              {...register("password", {
-                required: 'Password is required',
-              })}
-              onChange={(e) => handlePasswordChange(e.target.value)}
-            />
-            <button
-              type="button"
-              onClick={toggleShowPassword}
-              className="top-1/2 right-3 transform -translate-y-1/2 absolute"
-            >
-              {showPassword
-                ? <FontAwesomeIcon icon={faEye} />
-                : <FontAwesomeIcon icon={faEyeSlash} />}
-            </button>
+        <div>
+          <p className='font-bold text-3xl mb-6 flex items-center'>Set Password</p>
+          <div className='flex items-center justify-center'>
+            <form onSubmit={handleSubmit(onClick)} className='space-y-8 border border-white rounded-md p-12 w-80'>
+              <div className="relative">
+                <Input
+                  label="Password"
+                  type={passwordInputType}
+                  placeholder="Enter Your New Password"
+                  {...register("password", {
+                    required: 'Password is required',
+                  })}
+                  onChange={(e) => handlePasswordChange(e.target.value)}
+                />
+                <button
+                  type="button"
+                  onClick={toggleShowPassword}
+                  className="top-1/2 right-3 transform -translate-y-1/2 absolute"
+                >
+                  {showPassword
+                    ? <FontAwesomeIcon icon={faEye} />
+                    : <FontAwesomeIcon icon={faEyeSlash} />}
+                </button>
+              </div>
+              {errors.password && (
+                <p className="text-red-500">{errors.password.message}</p>
+              )}
+              <div className="relative">
+                <Input
+                  label="Confirm Password"
+                  type={confirmPasswordInputType}
+                  placeholder="Confirm Your Password"
+                  {...register("confirmPassword", {
+                    required: 'Confirm Password is required',
+                  })}
+                  onChange={(e) => handleConfirmPasswordChange(e.target.value)}
+                />
+                <button
+                  type="button"
+                  onClick={toggleShowConfirmPassword}
+                  className="top-1/2 right-3 transform -translate-y-1/2 absolute"
+                >
+                  {showConfirmPassword
+                    ? <FontAwesomeIcon icon={faEye} />
+                    : <FontAwesomeIcon icon={faEyeSlash} />}
+                </button>
+              </div>
+              {errors.confirmPassword && (
+                <p className="text-red-500">{errors.confirmPassword.message}</p>
+              )}
+              {confirmPasswordError && (
+                <p className="text-red-500">{confirmPasswordError}</p>
+              )}
+              <Button
+                type='submit'
+                className='w-full'
+              >
+                <p>Continue</p>
+              </Button>
+            </form>
           </div>
-          {errors.password && (
-            <p className="text-red-500">{errors.password.message}</p>
-          )}
-          <div className="relative">
-            <Input
-              label="Confirm Password"
-              type={confirmPasswordInputType}
-              placeholder="Confirm Your Password"
-              {...register("confirmPassword", {
-                required: 'Confirm Password is required',
-              })}
-              onChange={(e) => handleConfirmPasswordChange(e.target.value)}
-            />
-            <button
-              type="button"
-              onClick={toggleShowConfirmPassword}
-              className="top-1/2 right-3 transform -translate-y-1/2 absolute"
-            >
-              {showConfirmPassword
-                ? <FontAwesomeIcon icon={faEye} />
-                : <FontAwesomeIcon icon={faEyeSlash} />}
-            </button>
-          </div>
-          {errors.confirmPassword && (
-            <p className="text-red-500">{errors.confirmPassword.message}</p>
-          )}
-          {confirmPasswordError && (
-            <p className="text-red-500">{confirmPasswordError}</p>
-          )}
-          <Button
-            type='submit'
-            className='w-full'
-          >
-            <p>Continue</p>
-          </Button>
-        </form>
+        </div>
       </div>
     </>
   );

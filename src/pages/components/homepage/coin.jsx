@@ -120,6 +120,7 @@ function HomePage() {
                   )
               }
             </div>
+            {/* <News /> */}
             <Outlet />
             <div className=' sticky bottom-0 left-0 right-0 z-10'>
               <Footer />
