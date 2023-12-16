@@ -19,3 +19,6 @@ const coinSlice = createSlice ({
         },
     }
 })
+
+export const {setCurrentCoin,setCoins} = coinSlice.actions;
+export default coinSlice.reducer;

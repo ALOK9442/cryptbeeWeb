@@ -1,10 +1,11 @@
 import config from "../../config/config";
 import config from "../../config/config";
-import axios from "axios";
-import store from "../../redux/store";
 import api from "../../components/api";
+import { useDispatch } from "react-redux";
+import { setCoins } from "../../store/slices/coinslice";
 
 const BASEURL = config.BASEURLWS;
+const dispatch = useDispatch();
 
 const renewTokenAndSend = async () => {
     const refreshTokenItem = localStorage.getItem("refreshToken");
@@ -19,9 +20,14 @@ const renewTokenAndSend = async () => {
     }
 }
 
-const allCoinsSocket = (url, accessToken) => {
-    const ws = new WebSocket(BASEURL + url);
+export const allCoinsSocket = ( accessToken) => {
 
+    const sendMessage = (message) => {
+        if (socket.readyState === WebSocket.OPEN) {
+            ws.send(message);
+        }
+    }
+    const ws = new WebSocket(BASEURL);
     ws.onopen = () => {
         console.log("opened");
         ws.send(accessToken)
@@ -29,16 +35,19 @@ const allCoinsSocket = (url, accessToken) => {
     ws.onmessage = (e) => {
         console.log(e.data)
         const value = e.data;
-        if (value == "connection established, send token to recieve data") {
-            
-          } else if (value == "invalid token") {
-            
-          } else if (value ==
-              "authorised, enter ALL or name of the coin ,PROFIT to get current holdings") {
-            
-          } else {
-           
-          }
+        if (value == "invalid token") {
+            console.log("invalid token")
+            renewTokenAndSend();
+        } else if (value ==
+            "authorised, enter ALL or name of the coin ,PROFIT to get current holdings") {
+            sendMessage("ALL");
+        } else {
+            // const data = JSON.parse(value);
+            // console.log(data)
+            // dispatch(setCoins(data));
+            console.log('Received data:', value);
+            dispatch(setCoins(value));
+        }
     }
     const cleanup = () => {
         console.log("closed");
@@ -48,3 +57,68 @@ const allCoinsSocket = (url, accessToken) => {
 
 }
 
+export const singleCoinSocket = (accessToken, coin) => {
+    const ws = new WebSocket(BASEURL);
+    const sendMessage = (message) => {
+        if (socket.readyState === WebSocket.OPEN) {
+            ws.send(message);
+        }
+    }
+    ws.onopen = () => {
+        console.log("opened");
+        ws.send(accessToken)
+    }
+    ws.onmessage = (e) => {
+        console.log(e.data)
+        const value = e.data;
+        if (value == "invalid token") {
+            console.log("invalid token")
+            renewTokenAndSend();
+        } else if (value ==
+            "authorised, enter ALL or name of the coin ,PROFIT to get current holdings") {
+            sendMessage("PROFIT")
+        } else {
+            console.log('Received data:', value);
+            dispatch(setCoins(value));
+        }
+    }
+    const cleanup = () => {
+        console.log("closed");
+        ws.close();
+    }
+    return { cleanup };
+
+}
+
+
+export const walletSocket = (accessToken) => {
+    const ws = new WebSocket(BASEURL);
+    const sendMessage = (message) => {
+        if (socket.readyState === WebSocket.OPEN) {
+            ws.send(message);
+        }
+    }
+    ws.onopen = () => {
+        console.log("opened");
+        ws.send(accessToken)
+    }
+    ws.onmessage = (e) => {
+        console.log(e.data)
+        const value = e.data;
+        if (value == "invalid token") {
+            console.log("invalid token")
+            renewTokenAndSend();
+        } else if (value ==
+            "authorised, enter ALL or name of the coin ,PROFIT to get current holdings") {
+            dispatch(setCurrentCoin(value));
+        } else {
+            console.log('Received data:', value);
+            dispatch(setCoins(value));
+        }
+    }
+    const cleanup = () => {
+        console.log("closed");
+        ws.close();
+    }
+    return { cleanup };
+}
