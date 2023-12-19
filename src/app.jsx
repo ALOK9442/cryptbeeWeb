@@ -12,17 +12,17 @@ const App = () => {
           authStatus ? (
             <div className="min-h-screen bg-cover bg-center overflow-y-hidden bg-gray-900">
               <div className="flex flex-col h-screen text-white">
-                <main>
+                {/* <main> */}
                   <Outlet />
-                </main>
+                {/* </main> */}
               </div>
             </div>
           ) : (
             <div className="min-h-screen bg-cover bg-center overflow-y-hidden" style={{ backgroundImage: `url(${backgroundImage})` }}>
               <div className="flex flex-col h-screen text-white">
-                <main>
+                {/* <main> */}
                   <Outlet />
-                </main>
+                {/* </main> */}
               </div>
             </div>
             )
