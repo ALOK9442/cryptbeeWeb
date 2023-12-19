@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+
 const initialState = {
     photo: "https://crypt-bee.centralindia.cloudapp.azure.com/media/profile.jpg",
     name: "",
@@ -35,7 +36,7 @@ const userSlice = createSlice({
         },
 
         updateProfilePhoto: (state, action) => {
-            state.photo = action.payload.photo
+            state.photo = action.payload.profile_picture
         },
 
         setForgotPassEmail: (state, action) => {

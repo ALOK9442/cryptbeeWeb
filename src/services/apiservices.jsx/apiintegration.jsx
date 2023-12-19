@@ -2,8 +2,12 @@ import config from "../../config/config"
 import axios from "axios"
 import api from "../../components/api"
 import userslice from "../../store/slices/userslice"
+import { useSearchParams } from "react-router-dom"
+import { useSelector } from "react-redux"
 
 const BASEURL = config.BASEURL
+
+
 
 export const getNews = async () => {
     console.log("api get news")
@@ -21,35 +25,37 @@ export const getNews = async () => {
 export const sendProfilePhoto = async (photo) => {
     try {
         const formData = new FormData();
-        const file = new File([photo],'newProfile.img',{type:"image/jpeg"})
-        formData.append('profile_picture',file);
-        const response = await api.put(BASEURL + config.updateProfilePhoto,formData,{
-            headers:{
-                'Content-Type':'multipart/form-data',
+        const fileName = photo.name.replace(/\.[^/.]+$/, "");
+        formData.append('profile_picture', photo, `${fileName}.jpg`);
+        console.log(typeof(formData))
+        const response = await api.put(config.updateProfilePhoto, formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data',
             }
         })
         console.log(response);
         return response;
 
     } catch (error) {
-
+        console.log(error)
+        throw (error)
     }
 }
 
-export const getHoldings = async () =>{
+export const getHoldings = async () => {
     console.log("ggetting holdings")
     try {
         console.log("Trying to get holdings of the  user")
-        const response = await api.get(BASEURL+ config.holdingApiLink)
+        const response = await api.get(BASEURL + config.holdingApiLink)
         console.log(response.data)
         return response;
     } catch (error) {
         console.log(error)
-        throw(error)
+        throw (error)
     }
 }
 
-export const getUser = async()=>{
+export const getUser = async () => {
     console.log("getting user details")
     try {
         console.log("in trying")
@@ -58,6 +64,6 @@ export const getUser = async()=>{
         return response;
     } catch (error) {
         console.log(error)
-        throw(error)
+        throw (error)
     }
 }

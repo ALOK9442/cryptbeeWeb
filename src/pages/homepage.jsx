@@ -93,16 +93,15 @@ function HomePage() {
 
   return (
     <div className='flex flex-col min-h-screen'>
-    <div className='flex flex-grow justify-center w-80 mx-auto sm:w-full md:w-2/3 lg:w-1/2 xl:w-full mt-2 bg-gray-900'>
-      {
-        authStatus ? (
-          <div className=''>
-            <div className='mt-2 flex items-center space-x-4 bg-black-500'>
-              <img src={`${profilePhoto}`} alt='profile_image' className='w-12 h-12 rounded-full object-cover' />
-              <h1>{userName.toUpperCase()}</h1>
-            </div>
+      <div className='flex flex-grow justify-center w-80 mx-auto sm:w-full md:w-2/3 lg:w-1/2 xl:w-full mt-2 bg-gray-900'>
+        {
+          authStatus ? (
             <div>
-              {
+              <div className='mt-2 flex items-center space-x-4 bg-black-500'>
+                <img src={`${profilePhoto}`} alt='profile_image' className='w-12 h-12 rounded-full object-cover' />
+                <h1>{userName.toUpperCase()}</h1>
+              </div>
+              {/* {
                 !panStatus &&
                 (
                   <div>
@@ -112,20 +111,19 @@ function HomePage() {
                     </h1>
                   </div>
                 )
-              }
+              } */}
+              <Outlet />
             </div>
-            <Outlet />
-          </div>
-        ) : (
-          <h1>you are not authenticated</h1>
-        )
-      }
-      
+          ) : (
+            <h1>you are not authenticated</h1>
+          )
+        }
+
+      </div>
+      <div className='sticky bottom-4 top-h-screen left-0 right-0 z-10'>
+        <Footer />
+      </div>
     </div>
-    <div className='sticky bottom-4 top-h-screen left-0 right-0 z-10'>
-          <Footer />
-        </div>
-        </div>
   );
 
 }

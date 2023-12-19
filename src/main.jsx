@@ -17,6 +17,9 @@ import AuthLayout from './protectedrouting/authlayout.jsx'
 import Invest from './pages/investpage.jsx'
 import News from './pages/components/homepage/news.jsx'
 import UserHolding from './pages/components/homepage/userholdings.jsx'
+import InvestTablAll from './pages/components/invest/invest_tab_all.jsx'
+import ProfileTab from './pages/components/profile/profile_tab.jsx'
+import WalletTab from './pages/components/wallet/wallet_tab.jsx'
 
 
 const router = createBrowserRouter([
@@ -73,8 +76,24 @@ const router = createBrowserRouter([
           {
             path: "invest",
             element: (
-              <AuthLayout authentication>+
-                <Invest />
+              <AuthLayout authentication>
+                <InvestTablAll />
+              </AuthLayout>
+            )
+          },
+          {
+            path: "profile",
+            element: (
+              <AuthLayout authentication>
+                <ProfileTab />
+              </AuthLayout>
+            )
+          },
+          {
+            path: "wallet",
+            element: (
+              <AuthLayout authentication>
+                <WalletTab />
               </AuthLayout>
             )
           }

@@ -1,9 +1,11 @@
 import React from 'react'
 
-function coinbox() {
+function CryptoCoin({
+  
+}) {
   return (
-    <div>coinbox</div>
+    <div>CryptoCoin</div>
   )
 }
 
-export default coinbox
+export default CryptoCoin
