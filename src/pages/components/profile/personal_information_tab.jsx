@@ -45,7 +45,7 @@ function PersonalInfo() {
                         />
                         <Input
                             type='text'
-                            label='Fullname'
+                            label='Pan Card Number'
                             defaultValue={`${panNumber}`}
                             onchange={(e) => setPanNumber(e.target.value)}
                         />
