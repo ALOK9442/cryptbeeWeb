@@ -20,7 +20,7 @@ import UserHolding from './pages/components/homepage/userholdings.jsx'
 import InvestTablAll from './pages/components/invest/invest_tab_all.jsx'
 import ProfileTab from './pages/components/profile/profile_tab.jsx'
 import WalletTab from './pages/components/wallet/wallet_tab.jsx'
-import PersonalInfo from './pages/components/profile/personal_information_tab.jsx'
+import PersonalInfo from './pages/components/profile/personal_information/personal_information_tab.jsx'
 
 
 const router = createBrowserRouter([

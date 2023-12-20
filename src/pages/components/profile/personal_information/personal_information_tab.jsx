@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
-import Input from '../../../components/common/input'
-import Button from '../../../components/common/button'
+import Input from '../../../../components/common/input'
+import Button from '../../../../components/common/button'
 
 function PersonalInfo() {
     const [profilePicture, setProfilePicture] = useState(useSelector(state => state.user.photo))

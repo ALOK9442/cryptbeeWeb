@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronRight, faPencilAlt } from '@fortawesome/free-solid-svg-icons';
 import { sendProfilePhoto } from '../../../services/apiservices.jsx/apiintegration';
 import { updateProfilePhoto, userDetails } from '../../../store/slices/userslice';
+import { Link } from 'react-router-dom';
 
 function ProfileTab() {
 
@@ -17,7 +18,7 @@ function ProfileTab() {
 
     const handleFileChange = async (event) => {
         const file = event.target.files[0];
-        console.log("files",file)
+        console.log("files", file)
         if (file) {
             try {
                 // Call the API function to upload the profile photo
@@ -48,7 +49,7 @@ function ProfileTab() {
                             <img src={`${profilePhoto}`} alt='profile_image' className='w-40 h-40 rounded-full border-2 border-white-500 object-cover' />
                         </label>
                         <div className="absolute top-24 left-28 right-0 bottom-0 flex items-center justify-center">
-                            <FontAwesomeIcon icon={faPencilAlt} className="text-black bg-white rounded-full w-4 h-4 object-cover p-4" />
+                            <FontAwesomeIcon icon={faPencilAlt} className="text-black bg-white rounded-full w-4 h-4 object-cover p-3" />
                         </div>
 
                     </div>
@@ -57,10 +58,12 @@ function ProfileTab() {
                         <p>{email}</p>
                     </div>
                     <div className='space-y-4 '>
-                        <p className='border-b-2 border-white flex justify-between'>
-                            Personal Details
-                            <FontAwesomeIcon icon={faChevronRight} />
-                        </p>
+                        <Link to="/home/personal-info">
+                            <p className='border-b-2 border-white flex justify-between'>
+                                Personal Details
+                                <FontAwesomeIcon icon={faChevronRight} />
+                            </p>
+                        </Link>
                         <p className='border-b-2 border-white flex justify-between'>
                             Security
                             <FontAwesomeIcon icon={faChevronRight} />
