@@ -45,10 +45,10 @@ function ProfileTab() {
                             id="profile-photo-input"
                         />
                         <label htmlFor="profile-photo-input">
-                            <img src={`${profilePhoto}`} alt='profile_image' className='w-40 h-40 rounded-full border-4 border-white-500 object-cover' />
+                            <img src={`${profilePhoto}`} alt='profile_image' className='w-40 h-40 rounded-full border-2 border-white-500 object-cover' />
                         </label>
                         <div className="absolute top-24 left-28 right-0 bottom-0 flex items-center justify-center">
-                            <FontAwesomeIcon icon={faPencilAlt} className="text-white" />
+                            <FontAwesomeIcon icon={faPencilAlt} className="text-black bg-white rounded-full w-4 h-4 object-cover p-4" />
                         </div>
 
                     </div>
