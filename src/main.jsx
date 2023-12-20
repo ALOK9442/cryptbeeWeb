@@ -21,6 +21,7 @@ import InvestTablAll from './pages/components/invest/invest_tab_all.jsx'
 import ProfileTab from './pages/components/profile/profile_tab.jsx'
 import WalletTab from './pages/components/wallet/wallet_tab.jsx'
 import PersonalInfo from './pages/components/profile/personal_information/personal_information_tab.jsx'
+import Security from './pages/components/profile/security/security.jsx'
 
 
 const router = createBrowserRouter([
@@ -91,8 +92,12 @@ const router = createBrowserRouter([
             // ]
           },
           {
-            path:"personal-info",
-            element: <PersonalInfo/>
+            path: "personal-info",
+            element: <PersonalInfo />
+          },
+          {
+            path: "security",
+            element: <Security />
           },
           {
             path: "profile",
