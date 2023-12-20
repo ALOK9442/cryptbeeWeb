@@ -34,9 +34,9 @@ function ProfileTab() {
 
     return (
         <>
-            <div className='border-4 border-black p-4 bg-black rounded-xl mt-8'>
+            <div className='border-4 border-zinc-950 p-4 bg-zinc-950 rounded-xl mt-8'>
                 <div className='space-y-6'>
-                    <div className='mt-2 flex items-center justify-center space-x-4 bg-black-500 relative'>
+                    <div className='mt-2 flex items-center justify-center space-x-4 bg-0xFF0F0F0C relative'>
                         <input
                             type="file"
                             accept="image/*"
@@ -56,7 +56,7 @@ function ProfileTab() {
                         <h1>{userName}</h1>
                         <p>{email}</p>
                     </div>
-                    <div className='space-y-3 '>
+                    <div className='space-y-4 '>
                         <p className='border-b-2 border-white flex justify-between'>
                             Personal Details
                             <FontAwesomeIcon icon={faChevronRight} />
