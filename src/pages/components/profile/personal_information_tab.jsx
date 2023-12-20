@@ -22,37 +22,39 @@ function PersonalInfo() {
         setProfilePicture(photo)
     }, [photo, name, pan])
 
-    const handleSave = async() => {
+    const handleSave = async () => {
 
     }
 
     return (
-        <div className='border-4 border-zinc-950 p-4 bg-zinc-950 rounded-xl mt-8 w-80'>
-            <div className='space-y-6 flex flex-col items-center justify-center'>
+        <div className='border-4 border-zinc-950 p-4 bg-zinc-950 rounded-xl mt-6 w-80'>
+            <div className='space-y-4 flex flex-col items-center justify-center'>
                 <h1>
                     Personal Details
                 </h1>
-                <div>
-                    <img src={`${profilePicture}`} alt='profile_image' className='w-40 h-40 rounded-full border-2 border-white-500 object-cover' />
-                </div>
-                <div className='space-y-6'>
-                    <Input
-                        type='text'
-                        label='Fullname'
-                        defaultValue={`${fullName}`}
-                        onchange={(e) => setFullName(e.target.value)}
-                    />
-                    <Input
-                        type='text'
-                        label='Fullname'
-                        defaultValue={`${panNumber}`}
-                        onchange={(e) => setPanNumber(e.target.value)}
-                    />
-                    <Button className='w-full'
-                        onClick={() => { handleSave() }}
-                    >
-                        Save Changes
-                    </Button>
+                <div className='flex flex-col items-center justify-center space-y-2'>
+                    <img src={`${profilePicture}`} alt='profile_image' className='w-32 h-32 rounded-full border-2 border-white-500 object-cover' />
+                    <p className='text-sm text-center'>We get your personal information from the verification process</p>
+
+                    <div className='space-y-6 w-full'>
+                        <Input
+                            type='text'
+                            label='Fullname'
+                            defaultValue={`${fullName}`}
+                            onchange={(e) => setFullName(e.target.value)}
+                        />
+                        <Input
+                            type='text'
+                            label='Fullname'
+                            defaultValue={`${panNumber}`}
+                            onchange={(e) => setPanNumber(e.target.value)}
+                        />
+                        <Button className='w-full'
+                            onClick={() => { handleSave() }}
+                        >
+                            Save Changes
+                        </Button>
+                    </div>
                 </div>
             </div>
         </div>
