@@ -41,13 +41,13 @@ function PersonalInfo() {
                             type='text'
                             label='Fullname'
                             defaultValue={`${fullName}`}
-                            onchange={(e) => setFullName(e.target.value)}
+                            onChange={(e) => setFullName(e.target.value)}
                         />
                         <Input
                             type='text'
                             label='Pan Card Number'
                             defaultValue={`${panNumber}`}
-                            onchange={(e) => setPanNumber(e.target.value)}
+                            onChange={(e) => setPanNumber(e.target.value)}
                         />
                         <Button className='w-full'
                             onClick={() => { handleSave() }}
