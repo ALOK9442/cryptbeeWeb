@@ -146,19 +146,19 @@ export const forgotpassword = async ({ email, otp, password }) => {
     }
 }
 
-export const changepassword = async ( password, newpassword ) => {
+export const changepassword = async (password, newpassword) => {
     console.log("changing password")
     try {
         console.log("trying password")
         const response = await api.put(config.changePasswordLink, {
             'password': password,
-            'newpassword':newpassword
+            'newpassword': newpassword
         },
-        {
-            headers: {
-                'content-type': 'application/json'
+            {
+                headers: {
+                    'content-type': 'application/json'
+                },
             },
-        },
         )
         console.log(response)
         return response;
@@ -179,7 +179,13 @@ export const twoFactor = async (phoneNumber) => {
         console.log("trying two factor")
         const response = await api.post(config.newTwoFactor, {
             phoneNumber
-        })
+        },
+            {
+                headers: {
+                    'content-type': 'application/json'
+                },
+            }
+        )
         console.log(response.data)
         return response
     } catch (error) {
@@ -223,26 +229,26 @@ export const disableTwoFa = async () => {
         return response
     } catch (error) {
         console.log(error)
-        throw(error)
+        throw (error)
     }
 }
 
-export const twoFactorLogin = async ( otp,userEmail ) =>{
+export const twoFactorLogin = async (otp, userEmail) => {
     console.log("twofactorlogin")
     try {
         console.log("tryingtwofactorlogin")
-        const response = await axios.post(BASEURL+config.loginTwoFactorVerify,{
+        const response = await axios.post(BASEURL + config.loginTwoFactorVerify, {
             otp, userEmail
         })
         console.log(response.data)
         return response
     } catch (error) {
         console.log(error)
-        throw(error)
+        throw (error)
     }
 }
 
-export const watchings = async (coinName) =>{
+export const watchings = async (coinName) => {
     try {
         console.log("watching")
         const response = await api.get(config.inWatchlist + coinName)
@@ -250,11 +256,11 @@ export const watchings = async (coinName) =>{
         return response
     } catch (error) {
         console.log(error)
-        throw(error)
+        throw (error)
     }
 }
 
-export const getTransactions = async () =>{
+export const getTransactions = async () => {
     try {
         console.log("trying to get transactions history")
         const response = api.get(config.transactionLink)
@@ -262,6 +268,6 @@ export const getTransactions = async () =>{
         return response
     } catch (error) {
         console.log(error)
-        throw(error)
+        throw (error)
     }
 }

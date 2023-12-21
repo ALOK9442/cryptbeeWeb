@@ -23,6 +23,7 @@ import WalletTab from './pages/components/wallet/wallet_tab.jsx'
 import PersonalInfo from './pages/components/profile/personal_information/personal_information_tab.jsx'
 import Security from './pages/components/profile/security/security.jsx'
 import SetPass from './pages/components/profile/security/set_password/set_password.jsx'
+import TwoFactorVerifyMobile from './pages/components/profile/security/twofa/two_factor_mobile.jsx'
 
 
 const router = createBrowserRouter([
@@ -103,6 +104,12 @@ const router = createBrowserRouter([
           {
             path: "set-pass",
             element: <SetPass />
+          },
+          {
+            path:"2fa",
+            element:(
+              <TwoFactorVerifyMobile/>
+            )
           },
           {
             path: "profile",
