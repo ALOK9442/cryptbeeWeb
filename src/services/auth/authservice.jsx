@@ -99,7 +99,7 @@ export const resetPassword = async (email, otp, password) => {
                 },
             }
         )
-        console.log(response.data.message)
+        console.log(response.data)
         return response;
     } catch (error) {
         console.log(error)
@@ -134,7 +134,7 @@ export const forgotpassword = async ({ email, otp, password }) => {
         },
             {
                 headers: {
-                    'conten-type': 'application/json'
+                    'content-type': 'application/json'
                 },
             }
         )
@@ -146,14 +146,20 @@ export const forgotpassword = async ({ email, otp, password }) => {
     }
 }
 
-export const changepassword = async ({ oldpass, newpass }) => {
+export const changepassword = async ( password, newpassword ) => {
     console.log("changing password")
     try {
         console.log("trying password")
-        const response = await api.put(BASEURL + config.changePasswordLink, {
-            oldpass,
-            newpass
-        })
+        const response = await api.put(config.changePasswordLink, {
+            'password': password,
+            'newpassword':newpassword
+        },
+        {
+            headers: {
+                'content-type': 'application/json'
+            },
+        },
+        )
         console.log(response)
         return response;
     } catch (error) {

@@ -22,6 +22,7 @@ import ProfileTab from './pages/components/profile/profile_tab.jsx'
 import WalletTab from './pages/components/wallet/wallet_tab.jsx'
 import PersonalInfo from './pages/components/profile/personal_information/personal_information_tab.jsx'
 import Security from './pages/components/profile/security/security.jsx'
+import SetPass from './pages/components/profile/security/set_password/set_password.jsx'
 
 
 const router = createBrowserRouter([
@@ -98,6 +99,10 @@ const router = createBrowserRouter([
           {
             path: "security",
             element: <Security />
+          },
+          {
+            path: "set-pass",
+            element: <SetPass />
           },
           {
             path: "profile",

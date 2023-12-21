@@ -35,7 +35,7 @@ function ProfileTab() {
 
     return (
         <>
-            <div className='border-4 border-zinc-950 p-4 bg-zinc-950 rounded-xl mt-8'>
+            <div className='border-4 border-zinc-950 p-4 bg-zinc-950 rounded-xl mt-8 sm:w-80 '>
                 <div className='space-y-6'>
                     <div className='mt-2 flex items-center justify-center space-x-4 bg-0xFF0F0F0C relative'>
                         <input
@@ -58,28 +58,34 @@ function ProfileTab() {
                         <p>{email}</p>
                     </div>
                     <div className='space-y-4 '>
-                        <Link to="/home/personal-info">
+                        <div>
+                            <Link to="/home/personal-info">
+                                <p className='border-b-2 border-white flex justify-between'>
+                                    Personal Details
+                                    <FontAwesomeIcon icon={faChevronRight} />
+                                </p>
+                            </Link>
+                        </div>
+                        <div>
+                            <Link to="/home/security">
+                                <p className='border-b-2 border-white flex justify-between'>
+                                    Security
+                                    <FontAwesomeIcon icon={faChevronRight} />
+                                </p>
+                            </Link>
+                        </div>
+                        <div>
                             <p className='border-b-2 border-white flex justify-between'>
-                                Personal Details
+                                About CryptBee
                                 <FontAwesomeIcon icon={faChevronRight} />
                             </p>
-                        </Link>
-                        <p className='border-b-2 border-white flex justify-between'>
-                            Security
-                            <FontAwesomeIcon icon={faChevronRight} />
-                        </p>
-                        <p className='border-b-2 border-white flex justify-between'>
-                            About CryptBee
-                            <FontAwesomeIcon icon={faChevronRight} />
-                        </p>
-                        <p className='border-b-2 border-white flex justify-between'>
-                            Help and Support
-                            <FontAwesomeIcon icon={faChevronRight} />
-                        </p>
-                        <p className='border-b-2 border-white flex justify-between'>
-                            Download App For Better Experience
-                            <FontAwesomeIcon icon={faChevronRight} />
-                        </p>
+                        </div>
+                        <div>
+                            <p className='border-b-2 border-white flex justify-between'>
+                                Help and Support
+                                <FontAwesomeIcon icon={faChevronRight} />
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
