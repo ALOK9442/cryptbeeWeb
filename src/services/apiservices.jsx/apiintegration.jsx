@@ -86,6 +86,44 @@ export const watchings = async (coinName) => {
     }
 }
 
+export const modifyWatchlist = async (msg, currentCoin) => {
+    try {
+        console.log(`modifying watchlist ${msg} ${currentCoin}`)
+        if (msg === 'add') {
+            console.log("adding")
+            const response = await api.post(config.modifyWatchlist, {
+                "add": true,
+                "watchlist": currentCoin
+            },
+                {
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                }
+            )
+            console.log(response)
+            return response
+        } else {
+            console.log("removing")
+            const response = await api.post(config.modifyWatchlist, {
+                "remove": true,
+                "watchlist": currentCoin
+            },
+                {
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                }
+            )
+            console.log(response)
+            return response
+        }
+    } catch (error) {
+        console.log(error)
+        throw (error)
+    }
+}
+
 export const getTransactions = async () => {
     try {
         console.log("trying to get transactions history")
