@@ -309,7 +309,7 @@ export const getTransactions = async () => {
 export const getCoinDetails = async (coinName) => {
     try {
         console.log(`trying to get coin details${coinName}`)
-        const response = await api.get(config.coinDetails + coinName,
+        const response = await api.get(config.coinDetailsLink + coinName,
             {
                 headers: {
                     'content-type': 'application/json'

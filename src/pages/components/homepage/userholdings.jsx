@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getHoldings, getNews, getUser } from '../../../services/apiservices.jsx/apiintegration';
+import { getCoinDetails } from '../../../services/auth/authservice';
+import { useNavigate } from 'react-router-dom';
+import { setCurrentCoin } from '../../../store/slices/coinslice';
 
 
 function UserHolding() {
     const dispatch = useDispatch();
+    const navigate = useNavigate()
     const [holdings, setHoldings] = useState([]);
 
     const authStatus = useSelector(state => state.auth.isAuthenticated);
@@ -12,8 +16,13 @@ function UserHolding() {
     const panStatus = useSelector(state => state.user.panVerify)
     console.log(panStatus)
 
-    const onClick = () => {
-        
+    const onClick = async(value) => {
+        console.log(value)
+        const response = await getCoinDetails(value)
+        console.log(response.data)
+        dispatch(setCurrentCoin(value))
+        // navigate(`/coin/${value}`)
+        navigate("/home/coins")     
     }
 
     useEffect(() => {
@@ -46,7 +55,7 @@ function UserHolding() {
                 {holdings &&
                     holdings.map((item, index) => (
                         <div key={index} className='mt-4'>
-                            <img src={`https://www.${item[1]}`} alt='coin-img' className='w-12 h-12' />
+                            <img src={`https://www.${item[1]}`} alt='coin-img' className='w-12 h-12' onClick={(e)=>{onClick(item[0])}} />
                         </div>
                     ))
                 }

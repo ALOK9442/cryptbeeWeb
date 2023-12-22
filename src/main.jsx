@@ -24,6 +24,7 @@ import PersonalInfo from './pages/components/profile/personal_information/person
 import Security from './pages/components/profile/security/security.jsx'
 import SetPass from './pages/components/profile/security/set_password/set_password.jsx'
 import TwoFactorVerifyMobile from './pages/components/profile/security/twofa/two_factor_mobile.jsx'
+import CoinDetails from './components/common/coins.jsx'
 
 
 const router = createBrowserRouter([
@@ -106,9 +107,15 @@ const router = createBrowserRouter([
             element: <SetPass />
           },
           {
-            path:"2fa",
-            element:(
-              <TwoFactorVerifyMobile/>
+            path: "2fa",
+            element: (
+              <TwoFactorVerifyMobile />
+            )
+          },
+          {
+            path: "coins",
+            element: (
+              <CoinDetails />
             )
           },
           {
