@@ -7,6 +7,8 @@ import Button from '../../../../../components/common/button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { changepassword } from '../../../../../services/auth/authservice';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 function SetPass() {
@@ -21,6 +23,9 @@ function SetPass() {
     const email = useSelector(state => state.user.email)
 
 
+    const onToast = () => {
+        toast(' Password Changed Successfully')
+    }
     const handleConfirmPasswordChange = (value) => {
         setConfirmPasswordError('');
         const isValid = /^(?=.*[A-Z])(?=.*[!@#$%^&*()-=_+[\]{}|;':",.<>?])(?=.*[0-9]).{8,}$/.test(value);
@@ -66,6 +71,7 @@ function SetPass() {
 
     return (
         <>
+        <ToastContainer/>
             <div className="flex flex-col items-center justify-center mt-8 border-4 border-zinc-950 p-4 bg-zinc-950 rounded-xl">
                 <div>
                     <p className='font-bold text-3xl flex items-center justify-center'>Set Password</p>
@@ -117,6 +123,7 @@ function SetPass() {
                             <Button
                                 type='submit'
                                 className='w-full'
+                                onClick={onToast}
                             >
                                 <p>Save</p>
                             </Button>
