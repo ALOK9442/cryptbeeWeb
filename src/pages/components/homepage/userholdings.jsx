@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getHoldings, getNews, getUser } from '../../../services/apiservices.jsx/apiintegration';
-import { useId } from 'react';
+
 
 function UserHolding() {
     const dispatch = useDispatch();
@@ -9,10 +9,12 @@ function UserHolding() {
 
     const authStatus = useSelector(state => state.auth.isAuthenticated);
     console.log(authStatus);
-    const id = useId();
     const panStatus = useSelector(state => state.user.panVerify)
-    // const panStatus = true;
     console.log(panStatus)
+
+    const onClick = () => {
+        
+    }
 
     useEffect(() => {
         console.log("1")
@@ -30,15 +32,9 @@ function UserHolding() {
         }
 
         console.log("2")
-        //call both userholdings and fetchNews function if the 
-        // if (authStatus && panStatus) {
             getUserHolding();
-        // }
     }, []);
 
-    // if (isLoading) {
-    //     return <div>Loading...</div>;
-    // }
 
     return (
 

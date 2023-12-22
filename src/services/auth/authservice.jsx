@@ -198,7 +198,13 @@ export const twoFactorVerification = async (otp) => {
     console.log("twofactorverification")
     try {
         console.log("Trying two factor verification")
-        const response = await api.put(config.verifyTwoFactor, { otp })
+        const response = await api.put(config.verifyTwoFactor, { otp },
+            {
+                headers: {
+                    'content-type': 'application/json'
+                },
+            }
+        )
         console.log(response.data)
         return response
     } catch (error) {
@@ -211,7 +217,13 @@ export const enableTwoFa = async () => {
     console.log("2fa")
     try {
         console.log("2fa trying")
-        const response = await api.put(config.enableTwoFactor)
+        const response = await api.put(config.enableTwoFactor,
+            {
+                headers: {
+                    'content-type': 'application/json'
+                },
+            }
+        )
         console.log(response.data)
         return response
     } catch (error) {
@@ -224,7 +236,11 @@ export const disableTwoFa = async () => {
     console.log("disable2fa")
     try {
         console.log("trying disable2fa")
-        const response = await api.put(config.disableTwoFactor)
+        const response = await api.put(config.disableTwoFactor, {
+            headers: {
+                'content-type': 'application/json'
+            },
+        })
         console.log(response.data)
         return response
     } catch (error) {
@@ -239,7 +255,13 @@ export const twoFactorLogin = async (otp, userEmail) => {
         console.log("tryingtwofactorlogin")
         const response = await axios.post(BASEURL + config.loginTwoFactorVerify, {
             otp, userEmail
-        })
+        },
+            {
+                headers: {
+                    'content-type': 'application/json'
+                },
+            }
+        )
         console.log(response.data)
         return response
     } catch (error) {
@@ -251,7 +273,13 @@ export const twoFactorLogin = async (otp, userEmail) => {
 export const watchings = async (coinName) => {
     try {
         console.log("watching")
-        const response = await api.get(config.inWatchlist + coinName)
+        const response = await api.get(config.inWatchlist + coinName,
+            {
+                headers: {
+                    'content-type': 'application/json'
+                },
+            }
+        )
         console.log(response.data)
         return response
     } catch (error) {
@@ -263,8 +291,72 @@ export const watchings = async (coinName) => {
 export const getTransactions = async () => {
     try {
         console.log("trying to get transactions history")
-        const response = api.get(config.transactionLink)
+        const response = api.get(config.transactionLink,
+            {
+                headers: {
+                    'content-type': 'application/json'
+                },
+            }
+        )
         console.log(response.data)
+        return response
+    } catch (error) {
+        console.log(error)
+        throw (error)
+    }
+}
+
+export const getCoinDetails = async (coinName) => {
+    try {
+        console.log(`trying to get coin details${coinName}`)
+        const response = await api.get(config.coinDetails + coinName,
+            {
+                headers: {
+                    'content-type': 'application/json'
+                },
+            }
+        )
+        console.log(response)
+        return response
+    } catch (error) {
+        console.log(error)
+        throw (error)
+    }
+}
+
+export const buyCoin = async (coinName, quantity) => {
+    try {
+        console.log(`trying to buy coin ${coinName} ${quantity}`)
+        const response = await api.post(config.buyCoinLink, {
+            coinName, quantity
+        },
+            {
+                headers: {
+                    'content-type': 'application/json'
+                },
+            }
+        )
+        console.log(response)
+        return response
+    } catch (error) {
+        console.log(error)
+        throw (error)
+    }
+}
+
+export const sellCoin = async (coinName, quantity, amount) => {
+    try {
+        console.log(`trying to sell coin ${coinName} ${quantity} ${amount}`)
+        const response = await api.post(config.sellCoinLink, {
+            coinName, quantity, amount
+        },
+            {
+                headers: {
+                    'content-type': 'application/json'
+                },
+            }
+        )
+        console.log(response)
         return response
     } catch (error) {
         console.log(error)
