@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getHoldings, getNews, getUser } from '../../../services/apiservices.jsx/apiintegration';
-import { getCoinDetails } from '../../../services/auth/authservice';
+import { getCoinDetails } from '../../../services/apiservices.jsx/apiintegration';
 import { useNavigate } from 'react-router-dom';
 import { setCurrentCoin } from '../../../store/slices/coinslice';
 
@@ -20,7 +20,9 @@ function UserHolding() {
         console.log(value)
         const response = await getCoinDetails(value)
         console.log(response.data)
+        localStorage.setItem("currentCoin",value)
         dispatch(setCurrentCoin(value))
+
         // navigate(`/coin/${value}`)
         navigate("/home/coins")     
     }

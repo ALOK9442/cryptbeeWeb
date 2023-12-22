@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import { getCoinDetails } from '../../services/auth/authservice'
-import { useSelector } from 'react-redux'
+import { getCoinDetails } from '../../services/apiservices.jsx/apiintegration'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faArrowDown, faArrowUp } from '@fortawesome/free-solid-svg-icons'
 
 function CoinDetails() {
     const [coinName, setCoinName] = useState("")
@@ -9,7 +10,7 @@ function CoinDetails() {
     const [coinImg, setCoinImg] = useState("")
     const [coinDescription, setCoinDescriptiond] = useState("")
 
-    const currentCoin = useSelector(state => state.coin.currentCoin)
+    const currentCoin = localStorage.getItem("currentCoin") 
     useEffect(() => {
         const fetchCoinDetails = async () => {
             try {
@@ -31,12 +32,22 @@ function CoinDetails() {
 
     return (
         <>
-            <div>
-                <img src={`https://www.${coinImg}`} alt='coin-img' className='w-12 h-12' />
-                <h1>{coinName}</h1>
-                <h1>{coinPrice}</h1>
-                <h1>{changePct}</h1>
-                <h1>{coinDescription}</h1>
+            <div className='space-y-6 mt-8'>
+                <div className='flex space-x-3 items-center'>
+                    <img src={`https://www.${coinImg}`} alt='coin-img' className='w-12 h-12' />
+                    <h1>{coinName}</h1>
+                </div>
+                <div className='flex space-x-6'>
+                    <p>Prices</p>
+                    <h1>{coinPrice}</h1>
+                    <h1 className={`text-${changePct >= 0 ? 'green-500' : 'red-500'}`}>
+                    <FontAwesomeIcon icon={changePct >= 0 ? faArrowUp:faArrowDown} />
+                    {changePct}%</h1>
+                </div>
+                <p className=''>About</p>
+                <div className='max-w-md mx-auto h-80 w-lg p-4 pl-0 scrollbar-hidden overflow-auto'>
+                    <h1 className="text-1">{coinDescription}</h1>
+                </div>
             </div>
         </>
     )
