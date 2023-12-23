@@ -52,9 +52,16 @@ api.interceptors.response.use(
                 console.log("new access", response.data.access)
                 console.log("new refresh", response.data.refresh)
                 localStorage.setItem("refreshToken", response.data.refresh);
-                originalRequest.headers.Authorization = `Bearer ${response.data.access}`;
+
+                const refreshedApi = axios.create({
+                    baseURL: config.BASEURL,
+                    headers: {
+                        Authorization: `Bearer ${response.data.access}`,
+                    },
+                });
                 store.dispatch(login({ access: response.data.access, refresh: response.data.refresh }));
-                return api(originalRequest);
+                // Retry the original request with the new Axios instance
+                return refreshedApi(originalRequest);
             } catch (refreshError) {
                 console.log("Error refreshing token:", refreshError);
                 store.dispatch(logout());

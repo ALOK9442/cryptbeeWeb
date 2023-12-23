@@ -1,13 +1,17 @@
+
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import config from '../../../config/config';
 
 function InvestTablAll() {
   const [data, setData] = useState([]);
   const accessToken = localStorage.getItem('accessToken');
   const dispatch = useDispatch();
+  const URL = config.WEBSOCKETURL
+  console.log(URL)
 
   useEffect(() => {
-    const ws = new WebSocket('ws://cryptbee.anshumannandan.tech:8001');
+    const ws = new WebSocket(URL);
     const sendMessage = (message) => {
 
       if (ws.readyState === WebSocket.OPEN) {

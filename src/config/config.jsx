@@ -1,6 +1,6 @@
 const config = {
     BASEURL: String(import.meta.env.VITE_BASE_URL),
-    BASEURLWS: String(import.meta.env.VITE_BASE_URL_WS),
+    WEBSOCKETURL: String(import.meta.env.VITE_BASE_URL_WS),
     signInLink: "auth/login/",
     signUpLink: "auth/sendemailLINK/",
     verificationCheckerLink: "auth/verifyemailLINK/",
