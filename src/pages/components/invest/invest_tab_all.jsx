@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import config from '../../../config/config';
-
+import { setCoins } from '../../../store/slices/coinslice';
 function InvestTablAll() {
   const [data, setData] = useState([]);
   const accessToken = localStorage.getItem('accessToken');
@@ -41,17 +41,9 @@ function InvestTablAll() {
         console.log("all")
         ws.send("ALL");
       } 
-      // else if (value === "connection established, send token to recieve data") {
-      //   console.log("sending token")
-      //   console.log("accessss",accessToken)
-      //   ws.send(accessToken)
-      // } 
       else {
-        // const data = JSON.parse(value);
-        // console.log(data)
-        // dispatch(setCoins(data));
         console.log('Received data:', value);
-        // dispatch(setCoins(value));
+        dispatch(setCoins(value));
       }
     }
     // ws.onmessage = (e) => {
@@ -67,6 +59,17 @@ function InvestTablAll() {
       cleanup();
     };
   }, [accessToken]);
+
+
+  // useEffect(() => {
+  //   allCoinsSocket(accessToken);
+  //   const ws = allCoinsSocket(accessToken);
+  //   // closeWebSocket WebSocket connection when component unmounts
+  //   return () => {
+  //     console.log('closed');
+  //     ws.close(); // Invoke the cleanUp function to close the WebSocket
+  //   };
+  // }, [accessToken]);
 
   return <div>InvestTablAll</div>;
 }

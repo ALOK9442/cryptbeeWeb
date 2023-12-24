@@ -3,6 +3,8 @@ import { getCoinDetails } from '../../services/apiservices.jsx/apiintegration'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowDown, faArrowUp } from '@fortawesome/free-solid-svg-icons'
 import ChartCombined from './chart'
+import { singleCoinSocket } from '../../services/websockets.jsx/websocket'
+import config from '../../config/config'
 
 function CoinDetails() {
     const [coinName, setCoinName] = useState("")
@@ -10,9 +12,14 @@ function CoinDetails() {
     const [changePct, setChangePct] = useState("")
     const [coinImg, setCoinImg] = useState("")
     const [coinDescription, setCoinDescriptiond] = useState("")
-
+    const accessToken = localStorage.getItem("accessToken")
     const currentCoin = localStorage.getItem("currentCoin") 
+    const URL = config.WEBSOCKETURL
+
+
     useEffect(() => {
+        
+        console.log("in the coin details")
         const fetchCoinDetails = async () => {
             try {
                 console.log("coin details")
@@ -29,6 +36,7 @@ function CoinDetails() {
         }
         console.log(currentCoin)
         fetchCoinDetails()
+       
     }, [])
 
     return (

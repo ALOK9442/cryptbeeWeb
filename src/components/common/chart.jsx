@@ -1,5 +1,7 @@
 // ChartCombined.js
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import config from '../../config/config';
 import { Line } from 'react-chartjs-2';
 import { Chart, registerables } from 'chart.js';
 Chart.register(...registerables);
@@ -47,6 +49,39 @@ const chartOptions = {
   },
 };
 
+const URL = config.WEBSOCKETURL
+useEffect(() => {
+  const ws = new WebSocket(URL);
+
+  const cleanup = () => {
+    console.log("closed");
+    ws.close();
+  }
+  ws.onopen = () => {
+    console.log("opened");
+    console.log(accessToken)
+    ws.send(accessToken)
+  }
+  ws.onmessage = async (e) => {
+    console.log("blah", e.data)
+    const value = e.data;
+    console.log("value", value)
+    //   setData(value);
+    if (value === "invalid token") {
+      console.log("invalid token");
+    } else if (value === "authorised, enter ALL or name of the coin ,PROFIT to get current holdings") {
+      console.log("all")
+      ws.send(currentCoin);
+    }
+    else {
+      console.log('Received data:', value);
+      // dispatch(setCoins(value));
+    }
+  }
+  return () => {
+    cleanup();
+  };
+}, [])
 const ChartCombined = () => {
   return (
     <div>
