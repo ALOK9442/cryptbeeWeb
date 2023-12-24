@@ -46,7 +46,7 @@ function CoinDetails() {
                     <img src={`https://www.${coinImg}`} alt='coin-img' className='w-12 h-12' />
                     <h1>{coinName}</h1>
                 </div>
-                {/* <ChartCombined /> */}
+                <ChartCombined />
                 <div className='flex space-x-6'>
                     <p>Prices</p>
                     <h1>{coinPrice}</h1>
