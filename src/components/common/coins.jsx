@@ -41,7 +41,7 @@ function CoinDetails() {
 
     return (
         <>
-            <div className='space-y-6 mt-8'>
+            <div className='space-y-6 mt-4'>
                 <div className='flex space-x-3 items-center'>
                     <img src={`https://www.${coinImg}`} alt='coin-img' className='w-12 h-12' />
                     <h1>{coinName}</h1>
@@ -55,7 +55,7 @@ function CoinDetails() {
                     {changePct}%</h1>
                 </div>
                 <p className=''>About</p>
-                <div className='max-w-md mx-auto h-80 w-lg p-4 pl-0 scrollbar-hidden overflow-auto'>
+                <div className='max-w-md mx-auto h-40 w-lg p-4 pt-0 pl-0 scrollbar-hidden overflow-auto'>
                     <h1 className="text-1">{coinDescription}</h1>
                 </div>
             </div>
