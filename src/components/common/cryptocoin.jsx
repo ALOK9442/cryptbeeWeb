@@ -18,10 +18,7 @@ const CryptoCoin = React.forwardRef(function CryptoCoin({
 
 
   const handleSellClick = (event) => {
-    // Prevent the Link from being triggered
-    event.stopPropagation();
     console.log("sell clicked")
-    // Your logic for handling the sell click goes here
   };
 
   return (

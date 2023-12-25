@@ -14,7 +14,6 @@ import SendEmail from './components/authcomponents/forgotpassword-email.jsx'
 import EnterOtp from './components/authcomponents/otp.jsx'
 import HomePage from './pages/homepage.jsx'
 import AuthLayout from './protectedrouting/authlayout.jsx'
-import Invest from './pages/investpage.jsx'
 import News from './pages/components/homepage/news.jsx'
 import UserHolding from './pages/components/homepage/userholdings.jsx'
 import InvestTablAll from './pages/components/invest/invest_tab_all.jsx'
@@ -27,6 +26,7 @@ import TwoFactorVerifyMobile from './pages/components/profile/security/twofa/two
 import CoinDetails from './components/common/coins.jsx'
 import CryptoCoin from './components/common/cryptocoin.jsx'
 import MyHoldings from './pages/components/invest/invest_tab_my_holdings.jsx'
+import Invest from './pages/components/invest/invest.jsx'
 
 
 const router = createBrowserRouter([
@@ -84,7 +84,7 @@ const router = createBrowserRouter([
             path: "invest",
             element: (
               <AuthLayout authentication>
-                <InvestTablAll />
+                <Invest/>
               </AuthLayout>
             ),
             // children:[
