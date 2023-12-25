@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 
 
 const CryptoCoin = React.forwardRef(function CryptoCoin({
@@ -14,19 +15,23 @@ const CryptoCoin = React.forwardRef(function CryptoCoin({
   const currentValue = roundedDown.toFixed(2);
   console.log(currentValue);
   return (
-    <div className="flex flex-row justify-between items-center bg-black p-2 mt-2 rounded-md  ml-4 mr-4">
-      <div className="flex flex-row items-center">
-        <img src={`https://www.${imageUrl}`} alt={name} className="w-8 h-8 mr-2" />
-        <div className="flex flex-col">
-          <span className="text-white text-s">{fullName}</span>
-          <span className="text-gray-400 text-s">{name}</span>
-        <span className="text-green-500 text-s">{currentValue}</span>
+    <>
+      <Link to="/home/coins">
+        <div className="flex flex-row justify-between items-center bg-black p-2 mt-2 rounded-md  ml-4 mr-4">
+          <div className="flex flex-row items-center">
+            <img src={`https://www.${imageUrl}`} alt={name} className="w-8 h-8 mr-2" />
+            <div className="flex flex-col">
+              <span className="text-white text-s">{fullName}</span>
+              <span className="text-gray-400 text-s">{name}</span>
+              <span className="text-green-500 text-s">{currentValue}</span>
+            </div>
+          </div>
+          <div className="flex flex-col">
+            <span className="text-white text-s">${currentPrice}</span>
+          </div>
         </div>
-      </div>
-      <div className="flex flex-col">
-        <span className="text-white text-s">${currentPrice}</span>
-      </div>
-    </div>
+      </Link>
+    </>
   )
 }
 )

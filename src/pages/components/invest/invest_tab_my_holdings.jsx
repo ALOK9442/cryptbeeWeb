@@ -11,6 +11,10 @@ function MyHoldings() {
     const [imageUrl, setImageUrl] = useState();
     const [holdingValue, setHoldingValue] = useState();
 
+    const handleClick = async (value) => {
+        console.log(value)
+        localStorage.setItem("currentCoin", value)
+    }
     useEffect(() => {
         const getCoinHoldings = async () => {
             try {
@@ -28,7 +32,7 @@ function MyHoldings() {
         <div className='mt-4 overflow-y-auto h-screen scrollbar-hide sm:w-80 w-screen min-w-0'>
             {
                 holdingValue && holdingValue.map((item, index) => (
-                    <div key={index}>
+                    <div key={index} onClick={()=>handleClick(item[0])}>
                         <CryptoCoin
                             key={index}
                             name={item[0]}
