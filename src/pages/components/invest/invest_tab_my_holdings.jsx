@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { getHoldings } from '../../../services/apiservices.jsx/apiintegration';
 import CryptoCoin from '../../../components/common/cryptocoin';
-import { set } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 
 function MyHoldings() {
+    const navigate = useNavigate()
     const [currentPrice, setCurrentPrice] = useState();
     const [holding, setHolding] = useState([]);
     const [name, setName] = useState();
@@ -14,6 +15,7 @@ function MyHoldings() {
     const handleClick = async (value) => {
         console.log(value)
         localStorage.setItem("currentCoin", value)
+        navigate("/home/coins")
     }
     useEffect(() => {
         const getCoinHoldings = async () => {
