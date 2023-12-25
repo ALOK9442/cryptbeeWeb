@@ -29,7 +29,7 @@ function MyHoldings() {
         getCoinHoldings()
     }, [])
     return (
-        <div className='mt-4 overflow-y-auto h-screen scrollbar-hide sm:w-80 w-screen min-w-0'>
+        <div className='mt-8 overflow-y-auto h-3/5 scrollbar-hide sm:w-80 w-screen min-w-0'>
             {
                 holdingValue && holdingValue.map((item, index) => (
                     <div key={index} onClick={()=>handleClick(item[0])}>

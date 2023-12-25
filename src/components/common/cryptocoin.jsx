@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
+import Button from './button';
 
 
 const CryptoCoin = React.forwardRef(function CryptoCoin({
@@ -28,6 +29,7 @@ const CryptoCoin = React.forwardRef(function CryptoCoin({
           </div>
           <div className="flex flex-col">
             <span className="text-white text-s">${currentPrice}</span>
+            <button className="text-s w-16 rounded-lg bg-amber-500 p-2">sell</button>
           </div>
         </div>
       </Link>
