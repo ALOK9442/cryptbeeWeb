@@ -25,6 +25,8 @@ import Security from './pages/components/profile/security/security.jsx'
 import SetPass from './pages/components/profile/security/set_password/set_password.jsx'
 import TwoFactorVerifyMobile from './pages/components/profile/security/twofa/two_factor_mobile.jsx'
 import CoinDetails from './components/common/coins.jsx'
+import CryptoCoin from './components/common/cryptocoin.jsx'
+import MyHoldings from './pages/components/invest/invest_tab_my_holdings.jsx'
 
 
 const router = createBrowserRouter([
@@ -116,6 +118,12 @@ const router = createBrowserRouter([
             path: "coins",
             element: (
               <CoinDetails />
+            )
+          },
+          {
+            path:"my-holdings",
+            element:(
+              <MyHoldings/>
             )
           },
           {
