@@ -38,30 +38,30 @@ function InvestTablAll() {
       ws.send(accessToken)
     }
     ws.onmessage = async (e) => {
-      try{
-      const value = e.data;
-      console.log(value)
-      console.log(typeof (value))
+      try {
+        const value = e.data;
+        console.log(value)
+        console.log(typeof (value))
 
-      if (value === "invalid token") {
-        // console.log("invalid token");
-      } else if (value === "authorised, enter ALL or name of the coin ,PROFIT to get current holdings") {
-        // console.log("all")
-        ws.send("ALL");
+        if (value === "invalid token") {
+          // console.log("invalid token");
+        } else if (value === "authorised, enter ALL or name of the coin ,PROFIT to get current holdings") {
+          // console.log("all")
+          ws.send("ALL");
+        }
+        else {
+          // console.log('Received data:', value);
+          const response = JSON.parse(e.data);
+          // const responseData = JSON.parse(value);
+          console.log(typeof response.data)
+          console.log(response.data[0].FullName);
+          setData(response.data);
+          dispatch(setCoins(value));
+        }
+      } catch (error) {
+        console.log(error)
       }
-      else {
-        // console.log('Received data:', value);
-        const response = JSON.parse(e.data);
-      // const responseData = JSON.parse(value);
-      console.log(typeof response.data)
-      console.log(response.data[0].FullName);
-      setData(response.data);
-        dispatch(setCoins(value));
-      }
-    }catch(error){
-      console.log(error)
     }
-  }
     return () => {
       cleanup();
     };
@@ -70,9 +70,9 @@ function InvestTablAll() {
 
 
   return (
-      <div className='mt-8 overflow-y-auto w-screen min-w-0 max-h-screen'>
-        {data && data.map((item, index) => (
-          <div className='justify-around flex'>
+    <div className='mt-8 overflow-y-auto w-screen min-w-0 max-h-screen'>
+      {data && data.map((item, index) => (
+        <div className='justify-around flex h-40'>
           <div key={index} className='w-80'>
             <CryptoCoinInvest
               name={item.Name}
@@ -83,13 +83,13 @@ function InvestTablAll() {
             />
           </div>
           <div>
-          {window.innerWidth > 640 && (
-          <ChartCombined coin={item.Name} />
-        )}
+            {window.innerWidth > 640 && (
+              <ChartCombined coin={item.Name} />
+            )}
           </div>
-          </div>
-        ))}
-      </div>
+        </div>
+      ))}
+    </div>
   )
 }
 
