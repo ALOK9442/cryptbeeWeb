@@ -3,6 +3,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import config from '../../../config/config';
 import { setCoins } from '../../../store/slices/coinslice';
 import CryptoCoinInvest from '../../../components/common/crypto_coin_invest';
+import ChartCombined from '../../../components/common/chart';
+import { useNavigate } from 'react-router-dom';
 
 
 function InvestTablAll() {
@@ -10,8 +12,11 @@ function InvestTablAll() {
   const accessToken = localStorage.getItem('accessToken');
   const dispatch = useDispatch();
   const URL = config.WEBSOCKETURL
-  // console.log(URL)
-
+  const navigate = useNavigate()
+  const handleClick = () => {
+    console.log("clicked")
+    navigate("/home/coins")
+  }
   useEffect(() => {
     const ws = new WebSocket(URL);
     const sendMessage = (message) => {
@@ -65,9 +70,10 @@ function InvestTablAll() {
 
 
   return (
-      <div className='mt-8 overflow-y-auto scrollbar-hide sm:w-80 w-screen min-w-0'>
+      <div className='mt-8 overflow-y-auto w-screen min-w-0 max-h-screen'>
         {data && data.map((item, index) => (
-          <div key={index}>
+          <div className='justify-around flex'>
+          <div key={index} className='w-80'>
             <CryptoCoinInvest
               name={item.Name}
               fullName={item.FullName}
@@ -75,6 +81,12 @@ function InvestTablAll() {
               currentPrice={item.Price}
               currentHolding={item.ChangePct}
             />
+          </div>
+          <div>
+          {window.innerWidth > 640 && (
+          <ChartCombined coin={item.Name} />
+        )}
+          </div>
           </div>
         ))}
       </div>

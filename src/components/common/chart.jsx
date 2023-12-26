@@ -4,7 +4,7 @@ import { Line } from 'react-chartjs-2';
 import { Chart, registerables } from 'chart.js';
 Chart.register(...registerables);
 
-const ChartCombined = () => {
+const ChartCombined = ({coin}) => {
   const [chartData, setChartData] = useState({
     labels: [],
     datasets: [
@@ -61,7 +61,7 @@ const ChartCombined = () => {
         console.log('invalid token');
       } else if (value === 'authorised, enter ALL or name of the coin, PROFIT to get current holdings') {
         console.log('all');
-        wsRef.current.send(currentCoin);
+        wsRef.current.send(coin);
       } else {
         const newData = value;
         console.log('Received data:', newData);
@@ -90,17 +90,17 @@ const ChartCombined = () => {
     return () => {
       cleanup();
     };
-  }, [URL, accessToken, currentCoin]);
+  }, [URL, accessToken, coin]);
 
   useEffect(() => {
     const intervalId = setInterval(() => {
-      wsRef.current.send(currentCoin);
+      wsRef.current.send(coin);
     }, 10000);
 
     return () => {
       clearInterval(intervalId);
     };
-  }, [currentCoin]);
+  }, [coin]);
 
   return (
     <div>
