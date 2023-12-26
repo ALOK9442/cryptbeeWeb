@@ -2,8 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import config from '../../../config/config';
 import { setCoins } from '../../../store/slices/coinslice';
-import InvestTabNav from './invest_tab_nav';
-import CryptoCoin from '../../../components/common/cryptocoin';
+import CryptoCoinInvest from '../../../components/common/crypto_coin_invest';
 
 
 function InvestTablAll() {
@@ -21,7 +20,7 @@ function InvestTablAll() {
         ws.send(message);
       }
       else {
-        // console.log("not open")
+        console.log("not open")
       }
     }
     const cleanup = () => {
@@ -34,16 +33,10 @@ function InvestTablAll() {
       ws.send(accessToken)
     }
     ws.onmessage = async (e) => {
+      try{
       const value = e.data;
-      // const response = JSON.parse(e.data);
-      // console.log("blah", response[0].Name)
-
-      console.log(typeof value)
-      if (data && data.data && Array.isArray(data.data) && data.data.length > 0) {
-        const firstNameOfFirstCoin = value.data[0].Name;
-        console.log(1)
-        console.log(firstNameOfFirstCoin);
-      }
+      console.log(value)
+      console.log(typeof (value))
 
       if (value === "invalid token") {
         // console.log("invalid token");
@@ -53,33 +46,38 @@ function InvestTablAll() {
       }
       else {
         // console.log('Received data:', value);
+        const response = JSON.parse(e.data);
+      // const responseData = JSON.parse(value);
+      console.log(typeof response.data)
+      console.log(response.data[0].FullName);
+      setData(response.data);
         dispatch(setCoins(value));
       }
+    }catch(error){
+      console.log(error)
     }
+  }
     return () => {
       cleanup();
     };
   }, [accessToken]);
 
-  // console.log("in data field", data)
 
 
   return (
-    <div>
-      <div>
+      <div className='mt-8 overflow-y-auto scrollbar-hide sm:w-80 w-screen min-w-0'>
         {data && data.map((item, index) => (
           <div key={index}>
-            <CryptoCoin
+            <CryptoCoinInvest
               name={item.Name}
               fullName={item.FullName}
               imageUrl={item.ImageURL}
               currentPrice={item.Price}
-              currentHolding={item.Coins}
+              currentHolding={item.ChangePct}
             />
           </div>
         ))}
       </div>
-    </div>
   )
 }
 

@@ -7,7 +7,7 @@ import { Outlet } from 'react-router-dom';
 function Invest() {
     return (
         <div>
-            <div>
+            <div className=''>
                 <InvestTabNav />
                 <InvestTablAll />
                 {Outlet}
