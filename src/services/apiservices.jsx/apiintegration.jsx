@@ -134,7 +134,7 @@ export const getTransactions = async () => {
                 },
             }
         )
-        console.log(response.data)
+        console.log((await response).data)
         return response
     } catch (error) {
         console.log(error)

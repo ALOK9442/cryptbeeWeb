@@ -27,6 +27,7 @@ import CoinDetails from './components/common/coins.jsx'
 import CryptoCoin from './components/common/cryptocoin.jsx'
 import MyHoldings from './pages/components/invest/invest_tab_my_holdings.jsx'
 import Invest from './pages/components/invest/invest.jsx'
+import TransactionHistory from './pages/components/wallet/transactions/transactions.jsx'
 
 
 const router = createBrowserRouter([
@@ -112,6 +113,12 @@ const router = createBrowserRouter([
             path: "2fa",
             element: (
               <TwoFactorVerifyMobile />
+            )
+          },
+          {
+            path:"transactions",
+            element:(
+              <TransactionHistory/>
             )
           },
           {
