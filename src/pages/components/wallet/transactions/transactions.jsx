@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { getTransactions } from '../../../../services/apiservices.jsx/apiintegration'
 import config from '../../../../config/config'
+import soldIcon from '../../../../assets/illustrations/sold_icon.svg'
+import  boughtIcon  from '../../../../assets/illustrations/bought_icon.svg'
 
 function TransactionHistory() {
   const URL = config.WEBSOCKETURL
@@ -74,35 +76,33 @@ function TransactionHistory() {
 
   }, [accessTokenItem])
 
-  const totalLoss = 0;
-  const totalProfit = 0;
-
-  const profitAndLoss = () => {
-
-  }
-
   return (
     <>
-      <div className='w-80'>
-        <div className='space-y-4 mt-8 w-80'>
-          <div className='justify-between'>
-            Total Loss  <span>{totalLoss}</span>
+      <div className='w-60 sm:w-80'>
+        <div className='space-y-4 mt-8 w-60 sm:w-80'>
+          <div className='flex justify-between'>
+            {
+              (wallet + holdings) - 10000 > 0 ? <p className='text-amber-500 text-xl'>Total Profit</p> : <p className='text-amber-500 text-xl'>Total Loss</p>
+            }
+            {
+              (wallet + holdings) - 10000 > 0 ? <p className='text-green-500'>{(wallet + holdings - 10000).toFixed(2)}</p> : <p className='text-red-500'>{(wallet + holdings - 10000).toFixed(2)}</p>
+            }
           </div>
           <div>
             <p className='text-xs'>Total Wallet Balance</p>
-            <div className='text-3xl'>{totalProfit}</div>
+            <div className='text-3xl'>{wallet.toFixed(4)}</div>
           </div>
           <div>
-            <p className='text-xs'>Total Standings  </p>
-            <div className='text-3xl'>{totalProfit}</div>
+            <p className='text-xs text-amber-500'>Total Standings  </p>
+            <div className='text-3xl'>{total !== undefined ? total.toFixed(2) : ''}</div>
           </div>
         </div>
-        <p className='text-3xl'>Transaction History</p>
-        <div className='space-y-6 mt-4 max-h-[20rem] overflow-y-auto'>
+        <p className='text-3xl mt-6'>Transaction History</p>
+        <div className='space-y-6 mt-4 max-h-[16rem] overflow-y-auto'>
           {
             transactionData && transactionData.map((item, index) => (
-              <div key={index} className='bg-black border-solid h-16 flex items-center border-2 rounded-md text-s text-left truncate'>
-                <p>{item}</p>
+              <div key={index} className='bg-black border-solid flex items-center border-2 rounded-md text-s text-left truncate'>
+                <p className='flex'>{item[0] === 'B' ? <img src={boughtIcon} className='w-6 h-6'/> : <img src={soldIcon} className='w-6 h-6'/>}{item}</p>
               </div>
             )
             )
