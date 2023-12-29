@@ -5,6 +5,7 @@ import { faArrowDown, faArrowUp } from '@fortawesome/free-solid-svg-icons'
 import ChartCombined from './chart'
 import { singleCoinSocket } from '../../services/websockets.jsx/websocket'
 import config from '../../config/config'
+import Button from './button'
 
 function CoinDetails() {
     const [coinName, setCoinName] = useState("")
@@ -41,7 +42,7 @@ function CoinDetails() {
 
     return (
         <>
-            <div className='space-y-6 mt-4'>
+            <div className='space-y-4 mt-4'>
                 <div className='flex space-x-3 items-center'>
                     <img src={`https://www.${coinImg}`} alt='coin-img' className='w-12 h-12' />
                     <h1>{coinName}</h1>
@@ -55,9 +56,10 @@ function CoinDetails() {
                     {changePct}%</h1>
                 </div>
                 <p className=''>About</p>
-                <div className='max-w-md mx-auto h-40 w-lg p-4 pt-0 pl-0 scrollbar-hidden overflow-auto'>
+                <div className='max-w-md mx-auto h-40 w-lg text-justify pt-0 pl-0 scrollbar-hidden overflow-auto'>
                     <h1 className="text-1">{coinDescription}</h1>
                 </div>
+                <Button className='w-full'>Buy Now</Button>
             </div>
         </>
     )
