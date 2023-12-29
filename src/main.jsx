@@ -116,12 +116,6 @@ const router = createBrowserRouter([
             )
           },
           {
-            path:"transactions",
-            element:(
-              <TransactionHistory/>
-            )
-          },
-          {
             path: "coins",
             element: (
               <CoinDetails />

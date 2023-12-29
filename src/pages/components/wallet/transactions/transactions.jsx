@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { getTransactions } from '../../../../services/apiservices.jsx/apiintegration'
 import config from '../../../../config/config'
 import soldIcon from '../../../../assets/illustrations/sold_icon.svg'
-import  boughtIcon  from '../../../../assets/illustrations/bought_icon.svg'
+import boughtIcon from '../../../../assets/illustrations/bought_icon.svg'
 
 function TransactionHistory() {
   const URL = config.WEBSOCKETURL
@@ -23,7 +23,6 @@ function TransactionHistory() {
       // console.log(transactionData)
     }
   }
-
 
 
   useEffect(() => {
@@ -90,7 +89,7 @@ function TransactionHistory() {
           </div>
           <div>
             <p className='text-xs'>Total Wallet Balance</p>
-            <div className='text-3xl'>{wallet.toFixed(4)}</div>
+            <div className='text-3xl'>{wallet !== undefined ? wallet.toFixed(4) : ""}</div>
           </div>
           <div>
             <p className='text-xs text-amber-500'>Total Standings  </p>
@@ -102,7 +101,7 @@ function TransactionHistory() {
           {
             transactionData && transactionData.map((item, index) => (
               <div key={index} className='bg-black border-solid flex items-center border-2 rounded-md text-s text-left truncate'>
-                <p className='flex'>{item[0] === 'B' ? <img src={boughtIcon} className='w-6 h-6'/> : <img src={soldIcon} className='w-6 h-6'/>}{item}</p>
+                <p className='flex'>{item[0] === 'B' ? <img src={boughtIcon} className='w-6 h-6' /> : <img src={soldIcon} className='w-6 h-6' />}{item}</p>
               </div>
             )
             )
