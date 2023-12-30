@@ -67,13 +67,19 @@ function InvestTablAll() {
     };
   }, [accessToken]);
 
+  const handleClickNavigate = async(coinName) => {
+    console.log("clicked")
+    localStorage.setItem("currentCoin", coinName)
+    navigate(`/home/coins/`)
+  }
+
 
 
   return (
     <div className='mt-8 overflow-y-auto w-screen min-w-0 max-h-screen'>
       {data && data.map((item, index) => (
         <div className='justify-around flex h-40'>
-          <div key={index} className='w-80'>
+          <div key={index} className='w-80' onClick={(e)=>handleClickNavigate(item.Name)}>
             <CryptoCoinInvest
               name={item.Name}
               fullName={item.FullName}

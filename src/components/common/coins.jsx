@@ -7,30 +7,31 @@ import { singleCoinSocket } from '../../services/websockets.jsx/websocket'
 import config from '../../config/config'
 import Button from './button'
 import BuyPopup from './buy'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { setIsClose, setIsOpen } from '../../store/slices/coinslice'
 
 function CoinDetails() {
     const dispatch = useDispatch()
+    const isOpen = useSelector((state) => state.coin.isOpen);
     const [coinName, setCoinName] = useState("")
     const [coinPrice, setCoinPrice] = useState("")
     const [changePct, setChangePct] = useState("")
     const [coinImg, setCoinImg] = useState("")
     const [coinDescription, setCoinDescriptiond] = useState("")
     const accessToken = localStorage.getItem("accessToken")
-    const currentCoin = localStorage.getItem("currentCoin") 
+    const currentCoin = localStorage.getItem("currentCoin")
     const URL = config.WEBSOCKETURL
     const [isPopupOpen, setIsPopupOpen] = useState(false)
 
     const handleBuyClick = () => {
         dispatch(setIsOpen())
     }
-    
+
 
 
 
     useEffect(() => {
-        
+
         console.log("in the coin details")
         const fetchCoinDetails = async () => {
             try {
@@ -48,31 +49,32 @@ function CoinDetails() {
         }
         console.log(currentCoin)
         fetchCoinDetails()
-       
+
     }, [])
 
     return (
         <>
-            <div className='space-y-4 mt-4'>
+            <div className={`space-y-4 mt-4 ${isOpen ? 'filter blur-sm' : ''}`}>
                 <div className='flex space-x-3 items-center'>
                     <img src={`https://www.${coinImg}`} alt='coin-img' className='w-12 h-12' />
                     <h1>{coinName}</h1>
                 </div>
-                <ChartCombined coin={currentCoin}/>
+                <ChartCombined coin={currentCoin} />
                 <div className='flex space-x-6'>
                     <p>Prices</p>
                     <h1>{coinPrice}</h1>
                     <h1 className={`text-${changePct >= 0 ? 'green-500' : 'red-500'}`}>
-                    <FontAwesomeIcon icon={changePct >= 0 ? faArrowUp:faArrowDown} />
-                    {changePct}%</h1>
+                        <FontAwesomeIcon icon={changePct >= 0 ? faArrowUp : faArrowDown} />
+                        {changePct}%</h1>
                 </div>
                 <p className=''>About</p>
                 <div className='max-w-md mx-auto h-40 w-lg text-justify pt-0 pl-0 scrollbar-hidden overflow-auto'>
                     <h1 className="text-1">{coinDescription}</h1>
                 </div>
                 <Button className='w-full' onClick={handleBuyClick} >Buy Now</Button>
-                <BuyPopup />
+
             </div>
+            <BuyPopup />
         </>
     )
 }

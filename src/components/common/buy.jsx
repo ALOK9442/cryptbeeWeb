@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { buyCoin } from '../../services/apiservices.jsx/apiintegration';
 import { useDispatch, useSelector } from 'react-redux';
 import { setIsClose } from '../../store/slices/coinslice';
+import Input from './input';
 
 
 const BuyPopup = () => {
@@ -37,17 +38,20 @@ const BuyPopup = () => {
 
     return (
         <div className={`fixed top-0 left-0 w-full h-full flex items-center justify-center ${isOpen ? '' : 'hidden'}`}>
-            <div className="bg-white p-8 rounded shadow-md">
-                <h2 className="text-xl font-semibold mb-4">Enter Amount</h2>
-                <input
+            <div className="bg-black p-8 rounded shadow-md">
+                <h2 className="text-xl font-semibold mb-4">Do you want to buy</h2>
+                <h2>Current Price</h2>
+                <Input
                     type="number"
+                    label="Amount"
                     placeholder="Enter amount"
                     value={amount}
                     onChange={handleChange}
-                    className="w-full border rounded p-2 mb-4 text-black"
+                    className="w-full border rounded p-2 mb-4 text-white"
                 />
+                <h2>Total Coins</h2>
                 <div className="flex justify-between">
-                    <button onClick={handleBuy} className="bg-green-500 text-black px-4 py-2 rounded hover:bg-green-600">
+                    <button onClick={handleBuy} className="bg-amber-500 text-black px-4 py-2 rounded hover:bg-green-600">
                         Buy
                     </button>
                     <button onClick={onClose} className="bg-gray-400 text-black px-4 py-2 rounded hover:bg-gray-500">

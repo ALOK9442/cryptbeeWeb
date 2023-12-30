@@ -4,6 +4,7 @@ const Input = React.forwardRef(function Input({
     label,
     className = "",
     type = "text",
+    onChange,
     ...props
 }, ref) {
     return (
@@ -16,8 +17,9 @@ const Input = React.forwardRef(function Input({
             <div className='w-full flex items-center'>
                 <input
                     type={type}
-                    className={`w-full text-white bg-transparent outline-none p-3 mt-0 pt-1 ${className}`} 
+                    className={`w-full border-none text-white bg-transparent outline-none mt-0 ${className}`} 
                     ref={ref}
+                    onChange={onChange}
                     {...props}
                 />
             </div>
