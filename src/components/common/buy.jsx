@@ -31,6 +31,7 @@ const BuyPopup = () => {
     };
 
     const onClose = () => {
+        setAmount('')
         dispatch(setIsClose())
     }
 

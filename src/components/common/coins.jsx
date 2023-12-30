@@ -26,14 +26,7 @@ function CoinDetails() {
         dispatch(setIsOpen())
     }
     
-    // const handlePopupClose = () => {
-    //     dispatch(setIsClose())
-    
-    // }
 
-    const handleBuy = (amount) => {
-        console.log("amount",amount)
-    }
 
 
     useEffect(() => {
