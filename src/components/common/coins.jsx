@@ -6,8 +6,12 @@ import ChartCombined from './chart'
 import { singleCoinSocket } from '../../services/websockets.jsx/websocket'
 import config from '../../config/config'
 import Button from './button'
+import BuyPopup from './buy'
+import { useDispatch } from 'react-redux'
+import { setIsClose, setIsOpen } from '../../store/slices/coinslice'
 
 function CoinDetails() {
+    const dispatch = useDispatch()
     const [coinName, setCoinName] = useState("")
     const [coinPrice, setCoinPrice] = useState("")
     const [changePct, setChangePct] = useState("")
@@ -16,6 +20,20 @@ function CoinDetails() {
     const accessToken = localStorage.getItem("accessToken")
     const currentCoin = localStorage.getItem("currentCoin") 
     const URL = config.WEBSOCKETURL
+    const [isPopupOpen, setIsPopupOpen] = useState(false)
+
+    const handleBuyClick = () => {
+        dispatch(setIsOpen())
+    }
+    
+    // const handlePopupClose = () => {
+    //     dispatch(setIsClose())
+    
+    // }
+
+    const handleBuy = (amount) => {
+        console.log("amount",amount)
+    }
 
 
     useEffect(() => {
@@ -59,7 +77,8 @@ function CoinDetails() {
                 <div className='max-w-md mx-auto h-40 w-lg text-justify pt-0 pl-0 scrollbar-hidden overflow-auto'>
                     <h1 className="text-1">{coinDescription}</h1>
                 </div>
-                <Button className='w-full'>Buy Now</Button>
+                <Button className='w-full' onClick={handleBuyClick} >Buy Now</Button>
+                <BuyPopup />
             </div>
         </>
     )
