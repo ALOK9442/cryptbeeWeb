@@ -28,6 +28,7 @@ import CryptoCoin from './components/common/cryptocoin.jsx'
 import MyHoldings from './pages/components/invest/invest_tab_my_holdings.jsx'
 import Invest from './pages/components/invest/invest.jsx'
 import TransactionHistory from './pages/components/wallet/transactions/transactions.jsx'
+import InvestTabWatchlist from './pages/components/invest/invest_tab_watchlist.jsx'
 
 
 const router = createBrowserRouter([
@@ -85,15 +86,26 @@ const router = createBrowserRouter([
             path: "invest",
             element: (
               <AuthLayout authentication>
-                <Invest/>
-                <InvestTablAll/>
+                <Invest />
               </AuthLayout>
             ),
-            children:[
+            children: [
+              {
+                path: '',
+                element: (
+                  <InvestTablAll />
+                )
+              },
               {
                 path: 'my-holdings',
-                element:(
+                element: (
                   <MyHoldings />
+                )
+              },
+              {
+                path: "watchlist",
+                element:(
+                  <InvestTabWatchlist/>
                 )
               }
             ]

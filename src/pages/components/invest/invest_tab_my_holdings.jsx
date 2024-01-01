@@ -72,7 +72,7 @@ function MyHoldings() {
     // }
 
     return (
-        <div className='mt-8 sm:w-80 w-screen min-w-0 overflow-y-auto h-40'>
+        <div className='mt-8 sm:w-80 w-screen min-w-0 overflow-y-auto' style={{ height: '30rem' }}>
             {
                 holdingValue && holdingValue.map((item, index) => (
 
