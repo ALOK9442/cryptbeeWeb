@@ -101,7 +101,7 @@ function HomePage() {
                 <img src={`${profilePhoto}`} alt='profile_image' className='w-12 h-12 rounded-full object-cover' />
                 <h1>{userName.toUpperCase()}</h1>
               </div>
-              {/* {
+              {
                 !panStatus &&
                 (
                   <div>
@@ -111,7 +111,7 @@ function HomePage() {
                     </h1>
                   </div>
                 )
-              } */}
+              }
               <Outlet />
             </div>
           ) : (

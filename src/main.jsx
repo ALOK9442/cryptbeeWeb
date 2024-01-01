@@ -86,16 +86,17 @@ const router = createBrowserRouter([
             element: (
               <AuthLayout authentication>
                 <Invest/>
+                <InvestTablAll/>
               </AuthLayout>
             ),
-            // children:[
-            //   {
-            //     path: 'personal-info',
-            //     element:(
-            //       <PersonalInfo/>
-            //     )
-            //   }
-            // ]
+            children:[
+              {
+                path: 'my-holdings',
+                element:(
+                  <MyHoldings />
+                )
+              }
+            ]
           },
           {
             path: "personal-info",
@@ -121,12 +122,12 @@ const router = createBrowserRouter([
               <CoinDetails />
             )
           },
-          {
-            path:"my-holdings",
-            element:(
-              <MyHoldings/>
-            )
-          },
+          // {
+          //   path:"my-holdings",
+          //   element:(
+          //     <MyHoldings/>
+          //   )
+          // },
           {
             path: "profile",
             element: (

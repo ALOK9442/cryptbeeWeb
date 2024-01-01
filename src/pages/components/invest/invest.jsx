@@ -6,13 +6,14 @@ import { Outlet } from 'react-router-dom';
 
 function Invest() {
     return (
-        <div>
+        // <div>
             <div className='flex flex-col items-center'>
                 <InvestTabNav />
-                <InvestTablAll />
-                {Outlet}
+                <div className='overflow-y-auto h-3/5 scrollbar-hide'>
+                    <Outlet />
+                </div>
             </div>
-        </div>
+        // </div>
     )
 }
 

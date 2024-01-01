@@ -3,16 +3,35 @@
 @tailwind utilities;
 
 .text-green-500 {
-    color: #00cc00; 
-  }
-  
-  .text-red-500 {
-    color: #ff0000;
-  }
+  color: #00cc00;
+}
 
-  ::-webkit-scrollbar {
-    width: 0px;
-  }
-  
+.text-red-500 {
+  color: #ff0000;
+}
 
-  
+::-webkit-scrollbar {
+  width: 0px;
+}
+
+body,
+html {
+  font-family: 'Poppins', sans-serif;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: local('Poppins'), url(./fonts/Poppins-Regular.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Poppins';
+  font-weight: 900;
+  src: local('Poppins'), url(./fonts/Poppins-Bold.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Poppins';
+  font-weight: 900;
+  src: local('Poppins'), url(./fonts/Poppins-Black.ttf) format('truetype');
+}
