@@ -59,7 +59,7 @@ function ProfileTab() {
                     </div>
                     <div className='space-y-4 '>
                         <div>
-                            <Link to="/home/personal-info">
+                            <Link to="/home/profile/personal-info">
                                 <p className='border-b-2 border-white flex justify-between'>
                                     Personal Details
                                     <FontAwesomeIcon icon={faChevronRight} />
@@ -67,7 +67,7 @@ function ProfileTab() {
                             </Link>
                         </div>
                         <div>
-                            <Link to="/home/security">
+                            <Link to="/home/profile/security">
                                 <p className='border-b-2 border-white flex justify-between'>
                                     Security
                                     <FontAwesomeIcon icon={faChevronRight} />

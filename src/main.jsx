@@ -29,6 +29,8 @@ import MyHoldings from './pages/components/invest/invest_tab_my_holdings.jsx'
 import Invest from './pages/components/invest/invest.jsx'
 import TransactionHistory from './pages/components/wallet/transactions/transactions.jsx'
 import InvestTabWatchlist from './pages/components/invest/invest_tab_watchlist.jsx'
+import Profile from './pages/components/profile/profile.jsx'
+import SecurityTab from './pages/components/profile/security/securitytab.jsx'
 
 
 const router = createBrowserRouter([
@@ -104,29 +106,11 @@ const router = createBrowserRouter([
               },
               {
                 path: "watchlist",
-                element:(
-                  <InvestTabWatchlist/>
+                element: (
+                  <InvestTabWatchlist />
                 )
               }
             ]
-          },
-          {
-            path: "personal-info",
-            element: <PersonalInfo />
-          },
-          {
-            path: "security",
-            element: <Security />
-          },
-          {
-            path: "set-pass",
-            element: <SetPass />
-          },
-          {
-            path: "2fa",
-            element: (
-              <TwoFactorVerifyMobile />
-            )
           },
           {
             path: "coins",
@@ -134,19 +118,47 @@ const router = createBrowserRouter([
               <CoinDetails />
             )
           },
-          // {
-          //   path:"my-holdings",
-          //   element:(
-          //     <MyHoldings/>
-          //   )
-          // },
           {
             path: "profile",
             element: (
               <AuthLayout authentication>
-                <ProfileTab />
+                <Profile />
               </AuthLayout>
-            )
+            ),
+            children: [
+              {
+                path: "",
+                element: (
+                  <ProfileTab />
+                )
+              },
+              {
+                path: "personal-info",
+                element: <PersonalInfo />
+              },
+              {
+                path: "security",
+                element: <SecurityTab />,
+                children: [
+                  {
+                    path: "",
+                    element: (
+                      <Security />
+                    )
+                  },
+                  {
+                    path: "2fa",
+                    element: (
+                      <TwoFactorVerifyMobile />
+                    )
+                  },
+                  {
+                    path: "set-pass",
+                    element: <SetPass />
+                  },
+                ]
+              },
+            ]
           },
           {
             path: "wallet",

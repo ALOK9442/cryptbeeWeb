@@ -15,12 +15,12 @@ function Security() {
         <div className='flex flex-col items-center space-y-6 border-4 border-zinc-950 p-4 bg-zinc-950 rounded-xl mt-8 w-80 h-screen'>
 
             <p className='font-bold'>Security</p>
-            <Link to="/home/twofa" className='border-b-2 border-white w-full'>
+            <Link to="/home/profile/security/2fa" className='border-b-2 border-white w-full'>
                 <button className=' flex justify-between w-full'>Two Factor authentication
                     <FontAwesomeIcon icon={faChevronRight} />
                 </button>
             </Link>
-            <Link to="/home/set-pass" className='border-b-2 border-white w-full'>
+            <Link to="/home/profile/security/set-pass" className='border-b-2 border-white w-full'>
                 <button className=' flex justify-between w-full'>Change Password
                     <FontAwesomeIcon icon={faChevronRight} />
                 </button>
