@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import Input from '../common/input';
 import Button from '../common/button';
 import { useForm } from 'react-hook-form';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import logo from "../../assets/logo/logo.png"; // Adjust the path to your logo image
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { verifyPan } from '../../services/auth/authservice';
 import { panVerified } from '../../store/slices/userslice';
 
@@ -13,13 +13,16 @@ function VerifyPan() {
   const [error, setError] = useState('');
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
+  const email = useSelector(state => state.user.email)
+  console.log(email)
   const onSubmit = async (data) => {
     console.log(`trying to verify pan ${data.name},${data.panNumber}`)
-    const response = await verifyPan(data.name, data.panNumber)
+    const types = data.panNumber
+    console.log(typeof types)
+    const response = await verifyPan({"email":email, "name":data.name, "pan":data.panNumber})
     console.log(response.data)
     if (response.status === 200) {
-      dispatch(panVerified({ name: data.name, pan: data.panNumber }))
+      dispatch(panVerified(response.data))
     }
     // console.log(data);
   };

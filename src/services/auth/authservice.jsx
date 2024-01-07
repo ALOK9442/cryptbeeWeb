@@ -107,18 +107,16 @@ export const resetPassword = async (email, otp, password) => {
     }
 }
 
-export const verifyPan = async (email, pan, name) => {
+export const verifyPan = async ({email, name, pan}) => {
     try {
-        console.log(`verifying pan of email: ${email}`)
-        let response;
-        if (pan && name) {
-            response = await api.post(BASEURL + config.panLink, { email, pan, name })
-        } else if (!pan && name) {
-            response = await api.post(BASEURL + config.panLink, { email, name })
-        } else {
-            response = await api.post(BASEURL + config.panLink, { email, name })
-        }
-        console.log(response.status);
+        console.log(`verifying pan of email: ${email}, name: ${name}, pan: ${pan}`)
+           const response = await api.post(BASEURL + config.panLink, { 'email':email, 'pan_number':pan, 'name':name },
+                {
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                })
+        console.log(response.data);
         return response;
 
     } catch (error) {

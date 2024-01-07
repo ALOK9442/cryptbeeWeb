@@ -32,7 +32,7 @@ const userSlice = createSlice({
         panVerified: (state, action) => {
             state.panVerify = true
             state.name = action.payload.name
-            state.pan = action.payload.pan
+            state.pan = action.payload.pan_number
         },
 
         updateProfilePhoto: (state, action) => {
