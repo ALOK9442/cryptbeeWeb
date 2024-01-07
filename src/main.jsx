@@ -31,6 +31,7 @@ import TransactionHistory from './pages/components/wallet/transactions/transacti
 import InvestTabWatchlist from './pages/components/invest/invest_tab_watchlist.jsx'
 import Profile from './pages/components/profile/profile.jsx'
 import SecurityTab from './pages/components/profile/security/securitytab.jsx'
+import EmailVerifier from './components/authcomponents/emailverifier.jsx'
 
 
 const router = createBrowserRouter([
@@ -47,12 +48,20 @@ const router = createBrowserRouter([
         element: <SignUp />
       },
       {
+        path: "/email-verification",
+        element: <EmailVerifier />
+      },
+      {
         path: "/verifymail",
         element: <MailOpener />
       },
       {
         path: "/verify-pan",
-        element: <VerifyPan />
+        element: (
+          <AuthLayout authentication>
+            <VerifyPan />
+          </AuthLayout>
+        )
       },
       {
         path: "/set-password",

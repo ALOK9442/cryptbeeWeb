@@ -49,12 +49,9 @@ function News() {
 
   return (
     <>
-    {/* <div className='flex justify-center w-80 mx-auto sm:w-full md:w-2/3 lg:w-1/2 xl:w-full mt-2 bg-gray-900'> */}
-      {/* {
-        authStatus ? ( */}
       <div>
-        <div className='mt-6 p-2'>
-          <h1>Crypto News</h1>
+        <div className='mt-6 p-2 pl-0'>
+          <h1 className='font-bold'>Crypto News</h1>
         </div>
         {news && (
           <div className="news-container overflow-y-auto max-h-96 px-0 p-4 mb-8 bg-transparent">
@@ -71,11 +68,6 @@ function News() {
           </div>
         )}
       </div>
-      {/* ) : (
-          <h1>you are not authenticated</h1>
-        )
-      } */}
-    {/* </div> */}
     </>
   );
 

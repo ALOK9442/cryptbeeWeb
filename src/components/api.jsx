@@ -39,18 +39,20 @@ api.interceptors.response.use(
         console.log("Error Response:", error);
 
         const originalRequest = error.config;
-        if (error.response === 401 && !originalRequest._retry) {
+        console.log("Original Request:", originalRequest);
+
+        if (error.response && error.response.status === 401 && !originalRequest._retry) {
             originalRequest._retry = true;
 
             try {
                 console.log("Trying for refresh token");
-                // const { refresh: refreshToken } = store.getState().auth;
                 const refreshTokenItem = localStorage.getItem("refreshToken");
-                console.log(refreshTokenItem)
+                console.log("Refresh Token:", refreshTokenItem);
+
                 const response = await axios.post(config.BASEURL + config.renewTokenLink, { refreshToken: refreshTokenItem });
+                console.log("Refresh Response:", response.data);
+
                 localStorage.setItem("accessToken", response.data.access);
-                console.log("new access", response.data.access)
-                console.log("new refresh", response.data.refresh)
                 localStorage.setItem("refreshToken", response.data.refresh);
 
                 const refreshedApi = axios.create({
@@ -59,6 +61,7 @@ api.interceptors.response.use(
                         Authorization: `Bearer ${response.data.access}`,
                     },
                 });
+
                 store.dispatch(login({ access: response.data.access, refresh: response.data.refresh }));
                 // Retry the original request with the new Axios instance
                 return refreshedApi(originalRequest);
@@ -71,5 +74,6 @@ api.interceptors.response.use(
         throw error;
     }
 );
+
 
 export default api;

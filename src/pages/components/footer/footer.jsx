@@ -6,7 +6,7 @@ function Footer() {
     }
     return (
         <div>
-            <div className='flex items-center justify-evenly bg-black rounded-xl p-4 sticky bottom-0 left-0 right-0 z-10 text-amber-500'>
+            <div className='flex items-center justify-evenly bg-black rounded-xl p-4 sticky bottom-0 left-2 right-2 z-10 text-amber-500'>
                 <Link to="/home">
                     <h1>Home</h1>
                 </Link>

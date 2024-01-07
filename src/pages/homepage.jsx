@@ -8,6 +8,7 @@ import { Link, Outlet } from 'react-router-dom';
 import News from './components/homepage/news';
 import Footer from './components/footer/footer';
 import UserHolding from './components/homepage/userholdings';
+import Button from '../components/common/button';
 // import { Outlet } from 'react-router-dom';
 
 function HomePage() {
@@ -97,21 +98,10 @@ function HomePage() {
         {
           authStatus ? (
             <div>
-              <div className='mt-2 flex items-center space-x-4 bg-black-500'>
+              <div className='mt-2 flex items-center space-x-4'>
                 <img src={`${profilePhoto}`} alt='profile_image' className='w-12 h-12 rounded-full object-cover' />
                 <h1>{userName.toUpperCase()}</h1>
               </div>
-              {
-                !panStatus &&
-                (
-                  <div>
-                    <h1>
-                      <img src={panVerifyImage} alt='pan' />
-                      <p>Verify your pan</p>
-                    </h1>
-                  </div>
-                )
-              }
               <Outlet />
             </div>
           ) : (
@@ -120,7 +110,7 @@ function HomePage() {
         }
 
       </div>
-      <div className='sticky bottom-4 top-h-screen left-0 right-0 z-10'>
+      <div className='sticky bottom-4 pl-0 pr-0 sm:pl-8 sm:pr-8 z-10'>
         <Footer />
       </div>
     </div>

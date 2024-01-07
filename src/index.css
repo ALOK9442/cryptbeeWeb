@@ -19,19 +19,19 @@ html {
   font-family: 'Poppins', sans-serif;
 }
 
-@font-face {
+/* @font-face {
   font-family: 'Poppins';
-  src: local('Poppins'), url(./fonts/Poppins-Regular.ttf) format('truetype');
+  src: local('Poppins'), url('./assets/fonts/Poppins-900.ttf') format('truetype');
 }
 
 @font-face {
   font-family: 'Poppins';
   font-weight: 900;
-  src: local('Poppins'), url(./fonts/Poppins-Bold.ttf) format('truetype');
+  src: local('Poppins'), url('./assets/fonts/Poppins-900.ttf') format('truetype');
 }
 
 @font-face {
   font-family: 'Poppins';
   font-weight: 900;
-  src: local('Poppins'), url(./fonts/Poppins-Black.ttf) format('truetype');
-}
+  src: local('Poppins'), url('./assets/fonts/Poppins-900.ttf') format('truetype');
+} */

@@ -31,7 +31,7 @@ function Login() {
         try {
             console.log("trying on login page");
             const response = await userLogin(data.email, data.password);
-            // if (response) {
+            if (response) {
             localStorage.setItem("accessToken", response.data.access);
             localStorage.setItem("refreshToken", response.data.refresh);
             console.log(response.data.refresh);
@@ -44,7 +44,10 @@ function Login() {
             setValue("email", "");
             setValue("password", "");
             navigate('/home')
-            // }
+            }
+            else {
+                setError("Invalid email or password.");
+            }
         } catch (error) {
             console.log(error);
             setError("Invalid email or password.");

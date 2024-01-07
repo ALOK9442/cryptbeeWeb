@@ -14,7 +14,7 @@ import store from '../../store/store';
 function SignUp() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const { register, handleSubmit, setValue } = useForm();
+    const { register, handleSubmit, setValue, formState: { errors } } = useForm();
     const [error, setError] = useState();
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
@@ -34,6 +34,9 @@ function SignUp() {
                 setValue("email", "");
                 setValue("password", "");
                 navigate(`/verifymail?email=${data.email}`);
+            }
+            else {
+                setError("Something went wrong. Please try again.");
             }
         } catch (error) {
             console.log(error);
@@ -72,6 +75,7 @@ function SignUp() {
                                     }
                                 })}
                             />
+                            {errors.email && <p>{errors.email.message}</p>}
                             <div className='relative'>
                                 <Input
                                     label='Password'
@@ -91,6 +95,7 @@ function SignUp() {
                                         : <FontAwesomeIcon icon={faEyeSlash} />}
                                 </button>
                             </div>
+                            {errors.password && <p>{errors.password.message}</p>}
                             <div className='relative'>
                                 <Input
                                     label='Confirm Password'
