@@ -9,7 +9,7 @@ import { verifyPan } from '../../services/auth/authservice';
 import { panVerified } from '../../store/slices/userslice';
 
 function VerifyPan() {
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, formState:{errors} } = useForm();
   const [error, setError] = useState('');
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -70,6 +70,7 @@ function VerifyPan() {
                   },
                 })}
               />
+              <div>{errors&&<p>{errors.message}</p>}</div>
               <div className="flex space-x-4">
                 {/* <Link to="/home" className="flex-1 block"> */}
                 <Button type="submit" className="flex-1 bg-amber-500 p-3">

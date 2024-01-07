@@ -54,9 +54,7 @@ function UserHolding() {
     return (
 
         <div className='space-y-2 mt-2'>
-
             {
-
                 !panStatus ?
                     (
                         <div className='flex flex-col w-1/2 space-y-4'>
@@ -65,23 +63,35 @@ function UserHolding() {
                             </div>
                             <div className='justify-center items-center'>
                                 <Button className='w-full'
-                                onClick={onClickPan}
+                                    onClick={onClickPan}
                                 >Verify your pan</Button>
                             </div>
                         </div>
                     ) :
-
                     (
-                        <div className='flex flex-wrap space-x-2'>
+
+
+                        <div className='flex flex-wrap flex-col space-x-2 space-y-2'>
                             <div className=''>
                                 <h1> My Holdings</h1>
                             </div>
-                            {holdings &&
-                                holdings.map((item, index) => (
-                                    <div key={index} className='mt-4'>
-                                        <img src={`https://www.${item[1]}`} alt='coin-img' className='w-12 h-12' onClick={(e) => { onClick(item[0]) }} />
+                            {
+                                holdings.length > 0 ? (
+                                    <div>
+                                        {
+                                            holdings.map((item, index) => (
+                                                <div key={index} className='mt-4'>
+                                                    <img src={`https://www.${item[1]}`} alt='coin-img' className='w-12 h-12' onClick={(e) => { onClick(item[0]) }} />
+                                                </div>
+
+                                            ))
+                                        }
                                     </div>
-                                ))
+                                ) : (
+                                    <div className='font-bold text-xl'>
+                                        <h1>No Coins, Go Buy Some</h1>
+                                    </div>
+                                )
                             }
                         </div>
                     )
