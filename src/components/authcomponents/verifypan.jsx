@@ -39,20 +39,20 @@ function VerifyPan() {
       </div>
 
       <div className='flex items-center justify-center w-full mt-20'>
-        <div className="mx-auto w-full max-w-md rounded-xl p-12 border border-white mt-6">
+        <div className="mx-auto flex flex-col items-center justify-center w-full max-w-md rounded-xl p-12 border border-white mt-6">
           <h2 className="text-center text-2xl font-bold leading-tight">
             Enter Personal Details
           </h2>
           <p className="mt-2 text-center text-base text-white/60">
             Verify Pan Number To Trade
           </p>
-          <form onSubmit={handleSubmit(onSubmit)} className='mt-8 mb-10 w-80'>
-            <div className='space-y-6'>
+          <form onSubmit={handleSubmit(onSubmit)} className='space-y-6 flex flex-col items-center justify-center w-80'>
+            {/* <div className='space-y-6 w-80'> */}
               <Input
                 label="Full Name"
                 placeholder="Enter your Full Name"
                 type="text"
-                className='w-full p-2 bg-transparent text-white'
+                className='p-2 bg-transparent text-white'
                 {...register('name', {
                   required: true,
                 })}
@@ -61,7 +61,7 @@ function VerifyPan() {
                 label="Pan Number"
                 placeholder="Enter your Pan Number"
                 type="text"
-                className='w-full p-2 bg-transparent text-white'
+                className='p-2 bg-transparent text-white'
                 {...register('panNumber', {
                   required: true,
                   pattern: {
@@ -83,7 +83,7 @@ function VerifyPan() {
                 </Button>
                 {/* </Link> */}
               </div>
-            </div>
+            {/* </div> */}
           </form>
         </div>
       </div>
