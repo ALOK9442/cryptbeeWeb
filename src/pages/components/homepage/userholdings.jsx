@@ -69,8 +69,6 @@ function UserHolding() {
                         </div>
                     ) :
                     (
-
-
                         <div className='flex flex-wrap flex-col space-x-2 space-y-2'>
                             <div className=''>
                                 <h1> My Holdings</h1>

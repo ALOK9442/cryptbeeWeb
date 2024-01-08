@@ -93,7 +93,7 @@ function HomePage() {
   }
 
   return (
-    <div className='flex flex-col min-h-screen'>
+    <div className='flex flex-col min-h-screen overflow-y-hidden'>
       <div className='flex flex-grow justify-center w-80 mx-auto sm:w-full md:w-2/3 lg:w-1/2 xl:w-full mt-2 bg-gray-900'>
         {
           authStatus ? (
@@ -110,7 +110,7 @@ function HomePage() {
         }
 
       </div>
-      <div className='sticky bottom-4 pl-0 pr-0 sm:pl-8 sm:pr-8 z-10'>
+      <div className='sticky bottom-4 w-full pl-0 pr-0 sm:pl-8 sm:pr-8 z-10'>
         <Footer />
       </div>
     </div>
