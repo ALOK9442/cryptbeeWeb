@@ -54,7 +54,7 @@ function News() {
           <h1 className='font-bold'>Crypto News</h1>
         </div>
         {news && (
-          <div className="news-container overflow-y-auto max-h-96 px-0 p-4 mb-8 bg-transparent">
+          <div className="news-container overflow-y-auto max-h-screen px-0 p-4 bg-transparent">
             <ul className="p-0">
               {news.map(item => (
                 <ul key={item.headline} className="pl-0 p-5 flex items-center">
