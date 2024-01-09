@@ -125,6 +125,26 @@ export const verifyPan = async ({email, name, pan}) => {
     }
 }
 
+export const verifyEmail = async (id,email,onapp) => {
+    try {
+        console.log("trying to verify email")
+        const response = await axios.post(BASEURL + config.verificationCheckerLink, {
+            id,email,onapp
+        },
+            {
+                headers: {
+                    'content-type': 'application/json'
+                },
+            }
+        )
+        console.log(response.data)
+        return response;
+    } catch (error) {
+        console.log(error)
+        throw (error)
+    }
+}
+
 export const forgotpassword = async ({ email, otp, password }) => {
     try {
         const response = await axios.patch(BASEURL + config.resetPassLink, {

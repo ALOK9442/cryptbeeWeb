@@ -1,10 +1,12 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
+import { verifyEmail } from '../../services/auth/authservice';
 function EmailVerifier() {
     const navigate = useNavigate()
     const [verificationText, setVerificationText] = useState("Cryptbee is verifying you...")
     const [isLoading, setIsLoading] = useState(true);
+    const [error, setError] = useState("");
 
     useEffect(() => {
         const fetchData = async () => {
@@ -17,24 +19,19 @@ function EmailVerifier() {
                 const onapp = params.get('onapp')
                 console.log(onapp)
                 console.log(`${queryString}, ${params},${email},${id} `)
-                const response = await axios.post('https://cryptbee.anshumannandan.tech/auth/verifyemailLINK/', {
+                const response = await verifyEmail( 
                     id,
                     email,
                     onapp,
-                },
-                {
-                    headers: {
-                        "Content-Type": "application/json",
-                      },
-                }
                 )
                 console.log(response)
-                // if (response.status === 200){
-                //     setVerificationText("You Have Been Successfully Verified. Open The Website To Enjoy The Services")
-                //     console.log(response.data)
-                //     // dispatch()
-                //     // navigate('/verify-pan')
-                // }else {
+                if (response.status === 200){
+                    setVerificationText("You Have Been Successfully Verified. Open The Website To Enjoy The Services")
+                    console.log(response.data)
+                    // dispatch()
+                    navigate('/')
+                }
+                // else {
                 //     let showcase;
                 //     if(response.data.message[0] !=null) showcase = response.data.message[0]
                 //     else if(response.data.UUID != null) showcase = response.data.UUID[0]
@@ -44,6 +41,7 @@ function EmailVerifier() {
             } catch (error) {
                 console.log(error)
                 setVerificationText(error.message)
+                setIsLoading(false)
             } finally {
                 setIsLoading(false)
             }
