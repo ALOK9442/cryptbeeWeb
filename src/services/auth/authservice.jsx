@@ -31,7 +31,7 @@ export const signUpUser = async (email, password) => {
     try {
         console.log("trying to signUp");
         const response = await axios.post(BASEURL + config.signUpLink,
-            { email, password },
+            { "email": email, "password": password },
             {
                 headers: {
                     'Content-Type': 'application/json',
@@ -107,15 +107,15 @@ export const resetPassword = async (email, otp, password) => {
     }
 }
 
-export const verifyPan = async ({email, name, pan}) => {
+export const verifyPan = async ({ email, name, pan }) => {
     try {
         console.log(`verifying pan of email: ${email}, name: ${name}, pan: ${pan}`)
-           const response = await api.post(BASEURL + config.panLink, { 'email':email, 'pan_number':pan, 'name':name },
-                {
-                    headers: {
-                        'content-type': 'application/json'
-                    },
-                })
+        const response = await api.post(BASEURL + config.panLink, { 'email': email, 'pan_number': pan, 'name': name },
+            {
+                headers: {
+                    'content-type': 'application/json'
+                },
+            })
         console.log(response.data);
         return response;
 
@@ -125,13 +125,13 @@ export const verifyPan = async ({email, name, pan}) => {
     }
 }
 
-export const verifyEmail = async (email,token) => {
+export const verifyEmail = async (email, token) => {
     try {
         console.log("trying to verify email")
         const response = await axios.post(BASEURL + config.verificationCheckerLink, {
             "email": email,
-             "token": token,
-             'onapp': false
+            "token": token,
+            'onapp': false
         },
             {
                 headers: {
