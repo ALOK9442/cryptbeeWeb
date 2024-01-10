@@ -22,7 +22,6 @@ function EmailVerifier() {
                 const response = await verifyEmail( 
                     id,
                     email,
-                    onapp,
                 )
                 console.log(response)
                 if (response.status === 200){
