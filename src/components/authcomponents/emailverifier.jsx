@@ -15,16 +15,17 @@ function EmailVerifier() {
                 const queryString = window.location.search
                 const params = new URLSearchParams(queryString);
                 const email = params.get('email')
-                const id = params.get('token')
+                const token = params.get('token')
                 const onapp = params.get('onapp')
                 console.log(onapp)
-                console.log(`${queryString}, ${params},${email},${id} `)
-                const response = await verifyEmail( 
-                    id,
+                console.log(`${queryString}, ${params},${email},${token} `)
+                const response = await verifyEmail(
                     email,
+                    token,
                 )
+                
                 console.log(response)
-                if (response.status === 200){
+                if (response.status === 200) {
                     setVerificationText("You Have Been Successfully Verified. Open The Website To Enjoy The Services")
                     console.log(response.data)
                     // dispatch()
@@ -51,13 +52,13 @@ function EmailVerifier() {
 
     return (
         <div className="flex justify-center items-center flex-col h-screen">
-          <h2 className="text-2xl" id="text">
-            {verificationText}
-          </h2>
-          {isLoading && <div className="border-8 border-t-8 border-gray-300 border-solid rounded-full w-8 h-8 animate-spin" id="loader"></div>}
+            <h2 className="text-2xl" id="text">
+                {verificationText}
+            </h2>
+            {isLoading && <div className="border-8 border-t-8 border-gray-300 border-solid rounded-full w-8 h-8 animate-spin" id="loader"></div>}
         </div>
-      );
-    };
-    
+    );
+};
+
 
 export default EmailVerifier

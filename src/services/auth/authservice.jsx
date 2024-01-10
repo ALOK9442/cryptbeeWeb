@@ -125,11 +125,13 @@ export const verifyPan = async ({email, name, pan}) => {
     }
 }
 
-export const verifyEmail = async (id,email) => {
+export const verifyEmail = async (email,token) => {
     try {
         console.log("trying to verify email")
         const response = await axios.post(BASEURL + config.verificationCheckerLink, {
-            id,email,onapp: true,
+            "email": email,
+             "token": token,
+             'onapp': false
         },
             {
                 headers: {
