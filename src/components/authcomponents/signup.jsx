@@ -25,13 +25,13 @@ function SignUp() {
     const handleSignup = async (data) => {
         setError("");
         try {
-            console.log(data.email,data.password);
-            console.log("trying to signup on signup page");
+            // console.log(data.email,data.password);
+            // console.log("trying to signup on signup page");
             const response = await signUpUser(data.email, data.password);
             if (response) {
-                console.log("response",response);
-                console.log(response.data.messsage[0]);
-                console.log(data.email);
+                // console.log("response",response);
+                // console.log(response.data.messsage[0]);
+                // console.log(data.email);
                 dispatch(setEmail(data.email));
                 setValue("email", "");
                 setValue("password", "");
@@ -39,7 +39,7 @@ function SignUp() {
             }
             else {
                 setError("Something went wrong. Please try again.");
-                console.log("response",response);
+                // console.log("response",response);
             }
         } catch (error) {
             if(error){
@@ -50,7 +50,7 @@ function SignUp() {
                 setError("Something went wrong. Please try again.");
             }
             }
-            console.log(error);
+            // console.log(error);
         }
     }
 

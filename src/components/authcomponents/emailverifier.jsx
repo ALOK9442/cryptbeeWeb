@@ -17,17 +17,17 @@ function EmailVerifier() {
                 const email = params.get('email')
                 const token = params.get('token')
                 const onapp = params.get('onapp')
-                console.log(onapp)
-                console.log(`${queryString}, ${params},${email},${token} `)
+                // console.log(onapp)
+                // console.log(`${queryString}, ${params},${email},${token} `)
                 const response = await verifyEmail(
                     email,
                     token,
                 )
-                
-                console.log(response)
+
+                // console.log(response)
                 if (response.status === 200) {
                     setVerificationText("You Have Been Successfully Verified. Open The Website To Enjoy The Services")
-                    console.log(response.data)
+                    // console.log(response.data)
                     // dispatch()
                     navigate('/')
                 }
@@ -39,7 +39,7 @@ function EmailVerifier() {
                 //     setVerificationText(showcase)
                 // }
             } catch (error) {
-                console.log(error)
+                // console.log(error)
                 setVerificationText(error.message)
                 setIsLoading(false)
             } finally {
