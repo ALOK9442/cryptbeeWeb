@@ -27,23 +27,40 @@ export const userLogin = async (email, password) => {
     }
 }
 
-export const signUpUser = async (email, password) => {
+export const signUpUser = async ( email, password ) => {
     try {
-        console.log("trying to signUp");
-        const response = await axios.post(BASEURL + config.signUpLink,
-            { "email": email, "password": password },
-            {
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-            }
-        );
-        return response;
+      console.log(`Began Sign Up Process For ${email} ${password}`);
+      
+      const response = await axios.post(
+        BASEURL+ config.signUpLink,
+        {
+          "email": email,
+          "password": password
+        },
+        {
+          headers: {
+            'Content-Type': 'application/json; charset=UTF-8',
+          },
+        }
+      );
+  
+      const output = response.data;
+      output.statusCode = response.status;
+      
+      console.log(output);
+      return output;
     } catch (error) {
-        console.log(error)
-        throw (error)
+      if (axios.isAxiosError(error)) {
+        // Axios error
+        console.log(error.response?.data || error.message);
+        return error.response?.data || error.message;
+      } else if (error instanceof Error) {
+        // Other types of errors
+        console.log(error.message);
+        return error.message;
+      }
     }
-}
+  };
 
 export const sendEmailOtp = async (email) => {
     try {

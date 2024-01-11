@@ -46,6 +46,9 @@ function SignUp() {
             if(error.response.data.message[0] === "User with this email already exists") {
             setError(error.response.data.message[0])
             }
+            else {
+                setError("Something went wrong. Please try again.");
+            }
             }
             console.log(error);
         }
