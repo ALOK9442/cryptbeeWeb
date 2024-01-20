@@ -72,7 +72,7 @@ function EnterOtp() {
               },
             })}
           />
-          <p>Didn't get the OTP? <span onClick={handleResend} style={{ cursor: 'pointer', color: 'orange' }}>RESEND</span></p>
+          <p>Didn&apos;t get the OTP? <span onClick={handleResend} style={{ cursor: 'pointer', color: 'orange' }}>RESEND</span></p>
           <Button type='submit'>Verify</Button>
         </form>
       </div>

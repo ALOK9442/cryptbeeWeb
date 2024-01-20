@@ -69,6 +69,7 @@ function InvestTablAll() {
 
   const handleClickNavigate = async(coinName) => {
     console.log("clicked")
+    console.log(coinName)
     localStorage.setItem("currentCoin", coinName)
     navigate(`/home/coins/`)
   }

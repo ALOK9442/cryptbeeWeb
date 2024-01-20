@@ -15,11 +15,13 @@ const BuyPopup = () => {
         setAmount(e.target.value)
     }
     const handleBuy = async () => {
+        console.log(amount)
+        console.log(currentCoin)
         try {
-            
             console.log("trying to buy", amount)
             const response = await buyCoin(currentCoin, amount)
             console.log(response)
+            console.log(amount)
         } catch (error) {
             console.log(error)
             throw (error)

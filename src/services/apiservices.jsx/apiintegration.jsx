@@ -164,7 +164,7 @@ export const buyCoin = async (coinName, quantity) => {
     try {
         console.log(`trying to buy coin ${coinName} ${quantity}`)
         const response = await api.post(config.buyCoinLink, {
-            coinName, quantity
+            "coin_name": coinName, "buy_amount": quantity
         },
             {
                 headers: {
@@ -183,8 +183,8 @@ export const buyCoin = async (coinName, quantity) => {
 export const sellCoin = async (coinName, quantity, amount) => {
     try {
         console.log(`trying to sell coin ${coinName} ${quantity} ${amount}`)
-        const response = await api.post(config.sellCoinLink, {
-            coinName, quantity, amount
+        const response = await api.patch(config.sellCoinLink, {
+            "coin_name": coinName, "sell_quantity": quantity, "price": amount
         },
             {
                 headers: {
