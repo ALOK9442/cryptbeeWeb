@@ -71,7 +71,8 @@ function UserHolding() {
                     (
                         <div className='flex flex-wrap flex-col space-x-2 space-y-2'>
                             <div className=''>
-                                <h1> My Holdings</h1>
+                                <h1 className='font-bold text-lg'> My Holdings</h1>
+                                {/* <h1 className='font-bold border-2 rounded-r-md'> My Holdings</h1> */}
                             </div>
                             {
                                 holdings.length > 0 ? (

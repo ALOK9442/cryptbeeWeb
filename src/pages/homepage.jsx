@@ -9,6 +9,7 @@ import News from './components/homepage/news';
 import Footer from './components/footer/footer';
 import UserHolding from './components/homepage/userholdings';
 import Button from '../components/common/button';
+import Navbar from './components/navbar/navbar';
 // import { Outlet } from 'react-router-dom';
 
 function HomePage() {
@@ -94,14 +95,11 @@ function HomePage() {
 
   return (
     <div className='flex flex-col min-h-screen'>
-      <div className='flex flex-grow justify-center w-80 mx-auto sm:w-full md:w-2/3 lg:w-1/2 xl:w-full mt-2 bg-gray-900'>
+      <Navbar />
+      <div className='flex flex-grow justify-center mx-auto sm:w-full md:w-2/3 lg:w-1/2 xl:w-full mt-2'>
         {
           authStatus ? (
             <div className='overflow-y-hidden max-h-screen'>
-              <div className='mt-2 flex items-center space-x-4'>
-                <img src={`${profilePhoto}`} alt='profile_image' className='w-12 h-12 rounded-full object-cover' />
-                <h1>{userName.toUpperCase()}</h1>
-              </div>
               <Outlet />
               <div className='absolute w-full bottom-4 left-0 right-0 sm:pl-8 sm:pr-8 z-10'>
                 <Footer />

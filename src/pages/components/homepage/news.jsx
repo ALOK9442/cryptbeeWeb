@@ -49,14 +49,14 @@ function News() {
 
   return (
     <>
-      <div className='overflow-y-hidden'>
+      <div className='overflow-y-hidden news'>
         <div className='mt-6 p-2 pl-0'>
-          <h1 className='font-bold'>Crypto News</h1>
+          <h1 className='font-bold text-lg underline newsTitle'>Crypto News!</h1>
         </div>
         {news && (
-          <div className="news-container overflow-y-auto max-h-96 px-0 p-4 bg-transparent">
+          <div className="news-container overflow-y-auto max-h-96 px-0 pt-0 p-4 bg-transparent">
               {news.map(item => (
-                <div key={item.headline} className="pl-0 p-5 flex items-center">
+                <div key={item.headline} className="pl-0 pt-0 p-5 flex items-center">
                   <a href={item.news} target="_blank" rel="noopener noreferrer" className="flex items-center ">
                     <img src={`${item.image}`} className='mr-2' />
                     {item.headline}

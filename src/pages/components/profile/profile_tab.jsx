@@ -32,7 +32,7 @@ function ProfileTab() {
         }
     };
 
-
+// <div className='flex flex-grow justify-center mx-auto sm:w-full md:w-2/3 lg:w-1/2 xl:w-full mt-2'>
     return (
         <>
             <div className='border-4 border-zinc-950 p-4 bg-zinc-950 rounded-xl mt-8 sm:w-80 '>

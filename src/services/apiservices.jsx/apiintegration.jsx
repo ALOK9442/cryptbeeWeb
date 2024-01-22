@@ -59,7 +59,7 @@ export const getUser = async () => {
     console.log("getting user details")
     try {
         console.log("in trying")
-        const response = await api.get(config.userDetails)
+        const response = await api.get(BASEURL+config.userDetails)
         console.log(response.data)
         return response;
     } catch (error) {
