@@ -22,7 +22,7 @@ api.interceptors.request.use(
                 config.headers.Authorization = `Bearer ${accessToken}`;
             }
         }
-        console.log(config.headers)
+        console.log("x",config.headers)
         return config;
     },
     (error) => {
@@ -47,9 +47,9 @@ api.interceptors.response.use(
             try {
                 console.log("Trying for refresh token");
                 const refreshTokenItem = localStorage.getItem("refreshToken");
-                console.log("Refresh Token:", refreshTokenItem);
+                console.log("Refresh Token::", refreshTokenItem);
 
-                const response = await axios.post(config.BASEURL + config.renewTokenLink, { refreshToken: refreshTokenItem });
+                const response = await axios.post(config.BASEURL + config.renewTokenLink, { "refresh": refreshTokenItem });
                 console.log("Refresh Response:", response.data);
 
                 localStorage.setItem("accessToken", response.data.access);
