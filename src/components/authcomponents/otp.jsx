@@ -31,7 +31,7 @@ function EnterOtp() {
   }
 
   const handleResend = async () => {
-    console.log("resending otp ",email)
+    console.log("resending otp ", email)
     try {
       const response = await sendEmailOtp(email)
       console.log(response.data)
@@ -43,7 +43,7 @@ function EnterOtp() {
 
   return (
     <>
-      <div className=" absolute top-1 left-1/2 transform -translate-x-1/2 flex items-center justify-center space-y-6">
+      <div className="flex items-center justify-center mt-4">
         <div className="flex items-center">
           <img src={logo} alt="Logo" className="w-8 h-8 mr-2" />
           <div>
@@ -51,30 +51,30 @@ function EnterOtp() {
           </div>
         </div>
       </div>
-      <div>
-        <div>
-          <p>check for otp</p>
-        </div>
-        <div>
+      <div className="h-screen flex flex-col items-center justify-center">
+        <div className="rounded-xl p-12 border border-white ">
           <p>Enter the OTP sent to your email address</p>
+
+          <form onSubmit={handleSubmit(handleClick)} className='mt-8 w-full md:w-80 space-y-4'>
+            <Input
+              label="OTP"
+              placeholder="Enter your OTP"
+              type="otp"
+              {...register("otp", {
+                required: true,
+                validate: {
+                  matchPattern: (value) =>
+                    /^\d{4}$/.test(value) ||
+                    "Email address must be a valid address",
+                },
+              })}
+            />
+            <p>Didn&apos;t get the OTP? <span onClick={handleResend} style={{ cursor: 'pointer', color: 'orange' }}>RESEND</span></p>
+            <Button type='submit'
+              className='w-full'
+            >Verify</Button>
+          </form>
         </div>
-        <form onSubmit={handleSubmit(handleClick)}>
-          <Input
-            label="OTP"
-            placeholder="Enter your OTP"
-            type="otp"
-            {...register("otp", {
-              required: true,
-              validate: {
-                matchPattern: (value) =>
-                  /^\d{4}$/.test(value) ||
-                  "Email address must be a valid address",
-              },
-            })}
-          />
-          <p>Didn&apos;t get the OTP? <span onClick={handleResend} style={{ cursor: 'pointer', color: 'orange' }}>RESEND</span></p>
-          <Button type='submit'>Verify</Button>
-        </form>
       </div>
     </>
   )

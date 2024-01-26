@@ -79,7 +79,7 @@ function InvestTablAll() {
   return (
     <div className='mt-8 overflow-y-auto w-screen min-w-0 max-h-screen'>
       {data && data.map((item, index) => (
-        <div className='justify-around flex h-40'>
+        <div className='justify-around flex h-40' key={index}>
           <div key={index} className='w-80' onClick={(e)=>handleClickNavigate(item.Name)}>
             <CryptoCoinInvest
               name={item.Name}

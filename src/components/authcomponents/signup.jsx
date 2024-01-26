@@ -59,7 +59,7 @@ function SignUp() {
 
     return (
         <>
-            <div className="absolute top-1 left-1/2 transform -translate-x-1/2 flex items-center justify-center">
+            <div className="absolute top-1 left-1/2 transform -translate-x-1/2 flex items-center justify-center mt-4">
                 <div className="flex items-center">
                     <img src={logo} alt="Logo" className="w-8 h-8 mr-2" />
                     <div>
@@ -71,7 +71,7 @@ function SignUp() {
                 <div className="mx-auto max-w-lg rounded-xl p-10 border border-white">
                     <h2 className="text-center text-2xl font-bold leading-tight">Create your account</h2>
                     {error && <p className="mt-8 text-center text-red-500">{error}</p>}
-                    <form onSubmit={handleSubmit(handleSignup)} className='mt-8 w-80'>
+                    <form onSubmit={handleSubmit(handleSignup)} className='mt-8 w-full md:w-80'>
                         <div className='space-y-5 bg-color-orange'>
                             <Input
                                 label="Email: "

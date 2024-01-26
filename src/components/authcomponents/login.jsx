@@ -69,9 +69,8 @@ function Login() {
             <div className='flex items-center justify-center w-full mt-24'>
                 <div className=" rounded-xl p-12 border border-white">
                     <h2 className="text-center text-2xl font-bold leading-tight">Sign in to your account</h2>
-
                     {error && <p className="mt-8 text-center text-red-500">{error}</p>}
-                    <form onSubmit={handleSubmit(handleLogin)} className='mt-8 w-80'>
+                    <form onSubmit={handleSubmit(handleLogin)} className='mt-8 w-full md:w-80'>
                         <div className='space-y-6'>
                             <Input
                                 label="Email"
