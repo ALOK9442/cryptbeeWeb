@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 // import backgroundimage from "../assets/background.png"
 import { Link, useNavigate } from 'react-router-dom'
@@ -14,12 +14,16 @@ import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import store from '../../store/store'
 import { setOtp, userDetails } from '../../store/slices/userslice'
 import { getUser } from '../../services/apiservices.jsx/apiintegration'
+import { ToastContainer, toast } from 'react-toastify'
+import "react-toastify/dist/ReactToastify.css";
 
 function Login() {
     const dispatch = useDispatch();
     const { register, handleSubmit, setValue, watch } = useForm();
     const [error, setError] = useState();
     const [showPassword, setShowPassword] = useState(false);
+    const [message, setMessage] = useState('');
+
     const navigate = useNavigate();
     useEffect(() => {
         dispatch(store.dispatch(logout()))
@@ -32,18 +36,19 @@ function Login() {
             console.log("trying on login page");
             const response = await userLogin(data.email, data.password);
             if (response) {
-            localStorage.setItem("accessToken", response.data.access);
-            localStorage.setItem("refreshToken", response.data.refresh);
-            console.log(response.data.refresh);
-            console.log(response.data.access);
-            console.log(response.data.message)
-            dispatch(authLogin(response.data));
-            const result = await getUser();
-            console.log("result", result.data)
-            dispatch(userDetails(result.data));
-            setValue("email", "");
-            setValue("password", "");
-            navigate('/home')
+                localStorage.setItem("accessToken", response.data.access);
+                localStorage.setItem("refreshToken", response.data.refresh);
+                setMessage(response.data.message);
+                console.log(response.data.refresh);
+                console.log(response.data.access);
+                console.log(response.data.message)
+                dispatch(authLogin(response.data));
+                const result = await getUser();
+                console.log("result", result.data)
+                dispatch(userDetails(result.data));
+                setValue("email", "");
+                setValue("password", "");
+                navigate('/home')
             }
             else {
                 setError("Invalid email or password.");
@@ -55,6 +60,19 @@ function Login() {
     };
 
     const passwordInputType = showPassword ? "text" : "password";
+
+    // const showMessage = () => {
+    //     if(message){
+    //         toast.success(message), {
+    //             position: toast.POSITION.TOP_RIGHT,
+    //         }
+    //     }
+    //     else{
+    //         toast.error("Invalid email or password."), {
+    //             position: toast.POSITION.TOP_RIGHT,
+    //         }
+    //     }
+    // }
 
     return (
         <>
@@ -117,7 +135,9 @@ function Login() {
                             {/* <Link to='/home'> */}
                             <Button
                                 type="submit"
-                                className="w-full">
+                                className="w-full"
+                                // onClick={showMessage}
+                            >
                                 <p className='text-2xl font-bold leading-6 tracking-wide text-center'>Sign in</p>
                             </Button>
                             {/* </Link> */}
@@ -134,6 +154,7 @@ function Login() {
                     </form>
                 </div>
             </div>
+            <ToastContainer />
         </>
     );
 }

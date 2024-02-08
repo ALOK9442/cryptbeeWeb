@@ -12,7 +12,7 @@ const App = () => {
       <div>
         {
           authStatus ? (
-            <div className="min-h-screen bg-cover bg-center overflow-y-hidden bg-black">
+            <div className="min-h-screen bg-cover bg-center overflow-y-hidden bg-[#17171F]">
               <div className="flex flex-col h-screen text-white overflow-y-hidden overflow-x-hidden">
                 <Outlet />
               </div>
