@@ -24,6 +24,7 @@ function VerifyPan() {
     if (response.status === 200) {
       dispatch(panVerified(response.data))
     }
+    navigate('/home')
     // console.log(data);
   };
 

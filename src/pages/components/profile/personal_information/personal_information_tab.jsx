@@ -14,7 +14,7 @@ function PersonalInfo() {
 
     const photo = useSelector((state) => state.user.photo);
     const name = useSelector((state) => state.user.name);
-    const pan = useSelector((state) => state.user.pan);
+    const pan = useSelector((state) => state.user.pan)?useSelector((state) => state.user.pan):"Enter Your Pan Number Here";
 
     useEffect(() => {
         setFullName(name)
