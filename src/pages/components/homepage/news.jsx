@@ -13,12 +13,12 @@ function News() {
 
   console.log("t")
   useEffect(() => {
-    console.log("1")
+    console.log("news1")
     const fetchNews = async () => {
       try {
         console.log("try news on homepage");
         const response = await getNews();
-        console.log("response data:", response.data);
+        console.log("response data: news1", response.data);
 
         // Check if response data is null or not as expected
         if (response.data !== null && response.data !== undefined) {
